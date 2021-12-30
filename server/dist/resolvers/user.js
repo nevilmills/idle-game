@@ -77,12 +77,12 @@ let UserResolver = class UserResolver {
         }
         return user;
     }
-    async login(options, { req }) {
-        const user = await User_1.User.findOne({ username: options.username });
+    async login(username, password, { req }) {
+        const user = await User_1.User.findOne({ username: username });
         if (!user) {
             throw new Error("Incorrect username.");
         }
-        const valid = await argon2_1.default.verify(user.password, options.password);
+        const valid = await argon2_1.default.verify(user.password, password);
         if (!valid) {
             throw new Error("Incorrect password.");
         }
@@ -113,10 +113,11 @@ __decorate([
 ], UserResolver.prototype, "register", null);
 __decorate([
     (0, type_graphql_1.Mutation)(() => User_1.User),
-    __param(0, (0, type_graphql_1.Arg)("options")),
-    __param(1, (0, type_graphql_1.Ctx)()),
+    __param(0, (0, type_graphql_1.Arg)("username")),
+    __param(1, (0, type_graphql_1.Arg)("password")),
+    __param(2, (0, type_graphql_1.Ctx)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [UsernamePasswordInput_1.UsernamePasswordInput, Object]),
+    __metadata("design:paramtypes", [String, String, Object]),
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "login", null);
 UserResolver = __decorate([

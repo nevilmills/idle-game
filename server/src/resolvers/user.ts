@@ -85,16 +85,17 @@ export class UserResolver {
 
   @Mutation(() => User)
   async login(
-    @Arg("options") options: UsernamePasswordInput,
+    @Arg("username") username: string,
+    @Arg("password") password: string,
     @Ctx() { req }: MyContext
   ): Promise<User> {
-    const user = await User.findOne({ username: options.username });
+    const user = await User.findOne({ username: username });
 
     if (!user) {
       throw new Error("Incorrect username.");
     }
 
-    const valid = await argon2.verify(user.password, options.password);
+    const valid = await argon2.verify(user.password, password);
 
     if (!valid) {
       throw new Error("Incorrect password.");
