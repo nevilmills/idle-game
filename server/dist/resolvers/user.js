@@ -48,6 +48,13 @@ UserResponse = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], UserResponse);
 let UserResolver = class UserResolver {
+    async me({ req }) {
+        if (!req.session.userId) {
+            return null;
+        }
+        const user = await User_1.User.findOne({ id: req.session.userId });
+        return user;
+    }
     async user(username) {
         const user = await User_1.User.findOne({ username: username });
         return user;
@@ -91,6 +98,13 @@ let UserResolver = class UserResolver {
         return user;
     }
 };
+__decorate([
+    (0, type_graphql_1.Query)(() => User_1.User),
+    __param(0, (0, type_graphql_1.Ctx)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserResolver.prototype, "me", null);
 __decorate([
     (0, type_graphql_1.Query)(() => User_1.User),
     __param(0, (0, type_graphql_1.Arg)("username")),

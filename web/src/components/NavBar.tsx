@@ -5,7 +5,13 @@ interface NavBarProps {}
 
 export const NavBar: React.FC<NavBarProps> = ({}) => {
   return (
-    <Box height={50} bgColor="teal" display="flex" flexDirection="column">
+    <Box
+      height={50}
+      bgColor="teal"
+      display="flex"
+      flexDirection="column"
+      justifyContent=""
+    >
       <Flex></Flex>
     </Box>
   );
