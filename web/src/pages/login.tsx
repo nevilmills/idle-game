@@ -7,12 +7,14 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
+import { useRouter } from "next/router";
 import React from "react";
 import { Wrapper } from "../components/Wrapper";
 import { useLoginMutation } from "../generated/graphql";
 
 const login = () => {
   const [, login] = useLoginMutation();
+  const router = useRouter();
 
   return (
     <Wrapper>
@@ -25,7 +27,10 @@ const login = () => {
             setErrors({
               password: "invalid username or password",
             });
+            return;
           }
+
+          router.push("/");
         }}
       >
         {({ values, handleChange }) => (

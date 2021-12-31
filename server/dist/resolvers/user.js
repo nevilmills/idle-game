@@ -86,6 +86,7 @@ let UserResolver = class UserResolver {
         if (!valid) {
             throw new Error("Incorrect password.");
         }
+        console.log("session id: ", req.session.userId);
         req.session.userId = user.id;
         return user;
     }

@@ -36,13 +36,13 @@ const main = async () => {
         name: constants_1.COOKIE_NAME,
         store: new RedisStore({ client: redis, disableTouch: true }),
         cookie: {
-            maxAge: 1000 * 60 * 60 * 24 * 365 * 10,
+            maxAge: 1000 * 60 * 60 * 24 * 365 * 2,
             httpOnly: true,
             sameSite: "lax",
-            secure: constants_1.__prod__,
+            secure: false,
         },
         saveUninitialized: false,
-        secret: "qjkweqwkjbdq",
+        secret: "qjkweasdasdaqwkjbdq",
         resave: false,
     }));
     const apolloServer = new apollo_server_express_1.ApolloServer({
@@ -53,6 +53,7 @@ const main = async () => {
         context: ({ req, res }) => ({
             req,
             res,
+            redis,
         }),
     });
     await apolloServer.start();
