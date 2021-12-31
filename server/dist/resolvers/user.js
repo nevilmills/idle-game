@@ -75,6 +75,7 @@ let UserResolver = class UserResolver {
                 throw new Error("username already taken");
             }
         }
+        req.session.userId = user.id;
         return user;
     }
     async login(username, password, { req }) {
@@ -86,7 +87,6 @@ let UserResolver = class UserResolver {
         if (!valid) {
             throw new Error("Incorrect password.");
         }
-        console.log("session id: ", req.session.userId);
         req.session.userId = user.id;
         return user;
     }
