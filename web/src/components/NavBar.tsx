@@ -1,18 +1,31 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import React from "react";
+import { useMeQuery } from "../generated/graphql";
 
 interface NavBarProps {}
 
 export const NavBar: React.FC<NavBarProps> = ({}) => {
+  const [{ data }] = useMeQuery();
+
   return (
     <Box
       height={50}
       bgColor="teal"
       display="flex"
-      flexDirection="column"
-      justifyContent=""
+      justifyContent="flex-end"
+      alignItems="center"
     >
-      <Flex></Flex>
+      <Box
+        display="flex"
+        justifyContent="space-evenly"
+        mr={8}
+        alignItems="center"
+      >
+        <Flex>{data?.me.username}</Flex>
+        <Button size="sm" ml={2} background="transparent">
+          logout
+        </Button>
+      </Box>
     </Box>
   );
 };
