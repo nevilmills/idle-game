@@ -64,6 +64,13 @@ export class UserResolver {
     return users;
   }
 
+  @Mutation(() => Boolean)
+  async logout(@Ctx() { req }: MyContext): Promise<Boolean> {
+    req.session.userId = undefined;
+
+    return true;
+  }
+
   @Mutation(() => User)
   async register(
     @Arg("options") options: UsernamePasswordInput,

@@ -63,6 +63,10 @@ let UserResolver = class UserResolver {
         const users = await User_1.User.find();
         return users;
     }
+    async logout({ req }) {
+        req.session.userId = undefined;
+        return true;
+    }
     async register(options, { req }) {
         const hashedPassword = await argon2_1.default.hash(options.password);
         let user;
@@ -118,6 +122,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "users", null);
+__decorate([
+    (0, type_graphql_1.Mutation)(() => Boolean),
+    __param(0, (0, type_graphql_1.Ctx)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserResolver.prototype, "logout", null);
 __decorate([
     (0, type_graphql_1.Mutation)(() => User_1.User),
     __param(0, (0, type_graphql_1.Arg)("options")),
