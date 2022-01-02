@@ -1,4 +1,5 @@
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Spacer } from "@chakra-ui/react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { useLogoutMutation, useMeQuery } from "../generated/graphql";
@@ -24,15 +25,17 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
         justifyContent="flex-end"
         alignItems="center"
       >
+        <Box p="2">
+          <Heading size="md">Random pog idle game</Heading>
+        </Box>
+        <Spacer />
         <Box
           display="flex"
           justifyContent="space-evenly"
           mr={8}
           alignItems="center"
         >
-          <Button size="sm" ml={2} background="transparent">
-            login
-          </Button>
+          <Link href="/login">login</Link>
         </Box>
       </Box>
     );
@@ -45,6 +48,10 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
         justifyContent="flex-end"
         alignItems="center"
       >
+        <Box p="2">
+          <Heading size="md">Random pog idle game</Heading>
+        </Box>
+        <Spacer />
         <Box
           display="flex"
           justifyContent="space-evenly"
@@ -55,8 +62,9 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
           <Button
             size="sm"
             ml={2}
-            background="transparent"
             onClick={handleClick}
+            variant="link"
+            color="black"
           >
             logout
           </Button>
