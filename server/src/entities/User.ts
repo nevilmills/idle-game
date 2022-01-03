@@ -36,7 +36,6 @@ export class User extends BaseEntity {
   @Column({ type: "int", default: 0 })
   coins!: number;
 
-  @Field()
   @OneToMany(() => User_Skill, (user_skill) => user_skill.userId)
   skills: User_Skill[];
 }

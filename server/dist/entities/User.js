@@ -50,7 +50,6 @@ __decorate([
     __metadata("design:type", Number)
 ], User.prototype, "coins", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(),
     (0, typeorm_1.OneToMany)(() => User_Skill_1.User_Skill, (user_skill) => user_skill.userId),
     __metadata("design:type", Array)
 ], User.prototype, "skills", void 0);

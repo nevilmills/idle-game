@@ -1,5 +1,14 @@
 import { Field, ObjectType } from "type-graphql";
-import { BaseEntity, Column, Entity, PrimaryColumn } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  ManyToOne,
+  OneToOne,
+  PrimaryColumn,
+} from "typeorm";
+import { Skill } from "./Skill";
+import { User } from "./User";
 
 @ObjectType()
 @Entity()
@@ -19,4 +28,10 @@ export class User_Skill extends BaseEntity {
   @Field()
   @Column()
   xp: number;
+
+  @ManyToOne(() => User_Skill, (user_skill) => user_skill.userId)
+  user: User;
+
+  @OneToOne(() => Skill, (skill) => skill.userSkill)
+  skill: Skill;
 }
