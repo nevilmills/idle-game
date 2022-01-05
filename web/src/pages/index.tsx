@@ -1,7 +1,6 @@
 import { Box, Flex } from "@chakra-ui/react";
 import type { NextPage } from "next";
-import { Generator } from "../components/Generator";
-import { GeneratorArea } from "../components/GeneratorArea";
+import { ActivityArea } from "../components/ActivityArea";
 import { NavBar } from "../components/NavBar";
 import { SideBar } from "../components/SideBar";
 
@@ -11,9 +10,7 @@ const Home: NextPage = () => {
       <NavBar />
       <Flex>
         <SideBar />
-        <GeneratorArea>
-          <Generator />
-        </GeneratorArea>
+        <ActivityArea />
       </Flex>
     </Box>
   );

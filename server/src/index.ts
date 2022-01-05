@@ -12,6 +12,9 @@ import { createConnection } from "typeorm";
 import { User } from "./entities/User";
 import path from "path";
 import { COOKIE_NAME, __prod__ } from "./constants";
+import { User_Skill } from "./entities/User_Skill";
+import { Skill } from "./entities/Skill";
+import { SkillResolver } from "./resolvers/skill";
 
 const main = async () => {
   const conn = await createConnection({
@@ -22,10 +25,12 @@ const main = async () => {
     logging: true,
     synchronize: true,
     // migrations: [path.join(__dirname, "./migrations/*")],
-    entities: [User],
+    entities: [User, User_Skill, Skill],
   });
 
   // await conn.runMigrations();
+
+  // await User.delete({});
 
   const app = express();
 
@@ -58,7 +63,7 @@ const main = async () => {
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [UserResolver],
+      resolvers: [UserResolver, SkillResolver],
       validate: false,
     }),
     context: ({ req, res }) => ({

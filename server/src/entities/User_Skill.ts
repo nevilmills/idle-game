@@ -3,6 +3,7 @@ import {
   BaseEntity,
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToOne,
   PrimaryColumn,
@@ -32,6 +33,7 @@ export class User_Skill extends BaseEntity {
   @ManyToOne(() => User_Skill, (user_skill) => user_skill.userId)
   user: User;
 
-  @OneToOne(() => Skill, (skill) => skill.userSkill)
+  @OneToOne(() => Skill)
+  @JoinColumn()
   skill: Skill;
 }

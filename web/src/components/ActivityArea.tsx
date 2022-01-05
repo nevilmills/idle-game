@@ -1,12 +1,11 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
+import { Activity } from "./Activity";
 
-interface GeneratorAreaProps {}
-
-export const GeneratorArea: React.FC<GeneratorAreaProps> = ({ children }) => {
+export const ActivityArea: React.FC<{}> = ({}) => {
   return (
     <Box w="100%" h="100vh" backgroundColor="darkgray">
-      {children}
+      <Activity />
     </Box>
   );
 };
