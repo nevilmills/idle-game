@@ -8,15 +8,15 @@ import {
   OneToOne,
   PrimaryColumn,
 } from "typeorm";
+import { Character } from "./Character";
 import { Skill } from "./Skill";
-import { User } from "./User";
 
 @ObjectType()
 @Entity()
 export class User_Skill extends BaseEntity {
   @Field()
   @PrimaryColumn()
-  userId!: number;
+  characterId!: number;
 
   @Field()
   @PrimaryColumn()
@@ -30,8 +30,8 @@ export class User_Skill extends BaseEntity {
   @Column()
   xp: number;
 
-  @ManyToOne(() => User_Skill, (user_skill) => user_skill.userId)
-  user: User;
+  @ManyToOne(() => Character, (character) => character.skills)
+  character: Character;
 
   @OneToOne(() => Skill)
   @JoinColumn()

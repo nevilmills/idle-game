@@ -1,5 +1,5 @@
 import { Arg, Mutation, Resolver } from "type-graphql";
-import { Skill } from "src/entities/Skill";
+import { Skill } from "../entities/Skill";
 
 @Resolver(Skill)
 export class SkillResolver {

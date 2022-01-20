@@ -6,7 +6,7 @@ import { UserResolver } from "./resolvers/user";
 import Redis from "ioredis";
 import session from "express-session";
 import connectRedis from "connect-redis";
-// import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
+import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import cors from "cors";
 import { createConnection } from "typeorm";
 import { User } from "./entities/User";
@@ -39,8 +39,8 @@ const main = async () => {
 
   app.use(
     cors({
-      origin: "http://localhost:3000",
-      // origin: "http://studio.apollographql.com",
+      // origin: "http://localhost:3000",
+      origin: "http://localhost:4000/graphql",
       credentials: true,
     })
   );
@@ -71,6 +71,7 @@ const main = async () => {
       res,
       redis,
     }),
+    plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
   });
 
   await apolloServer.start();
