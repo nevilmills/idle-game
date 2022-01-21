@@ -15,6 +15,7 @@ import { COOKIE_NAME, __prod__ } from "./constants";
 import { User_Skill } from "./entities/User_Skill";
 import { Skill } from "./entities/Skill";
 import { SkillResolver } from "./resolvers/skill";
+import { Character } from "./entities/Character";
 
 const main = async () => {
   const conn = await createConnection({
@@ -25,7 +26,7 @@ const main = async () => {
     logging: true,
     synchronize: true,
     // migrations: [path.join(__dirname, "./migrations/*")],
-    entities: [User, User_Skill, Skill],
+    entities: [User, User_Skill, Skill, Character],
   });
 
   // await conn.runMigrations();
@@ -39,8 +40,8 @@ const main = async () => {
 
   app.use(
     cors({
-      // origin: "http://localhost:3000",
-      origin: "http://localhost:4000/graphql",
+      origin: "http://localhost:3000",
+      // origin: "http://localhost:4000/graphql",
       credentials: true,
     })
   );
@@ -51,7 +52,7 @@ const main = async () => {
       cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 365 * 2, // 2 years
         httpOnly: true,
-        sameSite: "lax", //"lax", //csrf
+        sameSite: "lax", //csrf
         secure: false, // cookie only works in https
         // secure: __prod__, // cookie only works in https
       },

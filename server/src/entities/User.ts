@@ -4,9 +4,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { Character } from "./Character";
 
 @ObjectType()
 @Entity()
@@ -21,6 +24,10 @@ export class User extends BaseEntity {
 
   @Column()
   password!: string;
+
+  @OneToOne(() => Character)
+  @JoinColumn()
+  character: Character;
 
   @Field(() => String)
   @CreateDateColumn()
