@@ -13,7 +13,7 @@ import { Skill } from "./Skill";
 
 @ObjectType()
 @Entity()
-export class User_Skill extends BaseEntity {
+export class Character_Skill extends BaseEntity {
   @Field()
   @PrimaryColumn()
   characterId!: number;

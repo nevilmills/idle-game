@@ -16,7 +16,7 @@ const cors_1 = __importDefault(require("cors"));
 const typeorm_1 = require("typeorm");
 const User_1 = require("./entities/User");
 const constants_1 = require("./constants");
-const User_Skill_1 = require("./entities/User_Skill");
+const Character_Skill_1 = require("./entities/Character_Skill");
 const Skill_1 = require("./entities/Skill");
 const skill_1 = require("./resolvers/skill");
 const Character_1 = require("./entities/Character");
@@ -28,7 +28,7 @@ const main = async () => {
         password: "postgres",
         logging: true,
         synchronize: true,
-        entities: [User_1.User, User_Skill_1.User_Skill, Skill_1.Skill, Character_1.Character],
+        entities: [User_1.User, Character_Skill_1.Character_Skill, Skill_1.Skill, Character_1.Character],
     });
     const app = (0, express_1.default)();
     const RedisStore = (0, connect_redis_1.default)(express_session_1.default);

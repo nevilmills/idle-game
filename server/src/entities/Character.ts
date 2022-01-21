@@ -6,7 +6,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { User_Skill } from "./User_Skill";
+import { Character_Skill } from "./Character_Skill";
 
 @ObjectType()
 @Entity()
@@ -23,6 +23,9 @@ export class Character extends BaseEntity {
   @Column({ type: "int", default: 0 })
   coins!: number;
 
-  @OneToMany(() => User_Skill, (user_skill) => user_skill.characterId)
-  skills: User_Skill[];
+  @OneToMany(
+    () => Character_Skill,
+    (character_skill) => character_skill.characterId
+  )
+  skills: Character_Skill[];
 }

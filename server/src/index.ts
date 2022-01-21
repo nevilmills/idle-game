@@ -12,7 +12,7 @@ import { createConnection } from "typeorm";
 import { User } from "./entities/User";
 import path from "path";
 import { COOKIE_NAME, __prod__ } from "./constants";
-import { User_Skill } from "./entities/User_Skill";
+import { Character_Skill } from "./entities/Character_Skill";
 import { Skill } from "./entities/Skill";
 import { SkillResolver } from "./resolvers/skill";
 import { Character } from "./entities/Character";
@@ -26,7 +26,7 @@ const main = async () => {
     logging: true,
     synchronize: true,
     // migrations: [path.join(__dirname, "./migrations/*")],
-    entities: [User, User_Skill, Skill, Character],
+    entities: [User, Character_Skill, Skill, Character],
   });
 
   // await conn.runMigrations();
