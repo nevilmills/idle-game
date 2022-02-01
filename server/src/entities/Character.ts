@@ -19,6 +19,10 @@ export class Character extends BaseEntity {
   @Column({ unique: true })
   userId!: number;
 
+  @Field()
+  @Column()
+  name!: string;
+
   @Field(() => Int)
   @Column({ type: "int", default: 0 })
   coins!: number;
