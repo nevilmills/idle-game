@@ -22,16 +22,6 @@ __decorate([
 ], Character.prototype, "id", void 0);
 __decorate([
     (0, type_graphql_1.Field)(() => type_graphql_1.Int),
-    (0, typeorm_1.Column)({ unique: true }),
-    __metadata("design:type", Number)
-], Character.prototype, "userId", void 0);
-__decorate([
-    (0, type_graphql_1.Field)(),
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Character.prototype, "name", void 0);
-__decorate([
-    (0, type_graphql_1.Field)(() => type_graphql_1.Int),
     (0, typeorm_1.Column)({ type: "int", default: 0 }),
     __metadata("design:type", Number)
 ], Character.prototype, "coins", void 0);

@@ -33,7 +33,6 @@ export class Character_Skill extends BaseEntity {
   @ManyToOne(() => Character, (character) => character.skills)
   character: Character;
 
-  @OneToOne(() => Skill)
-  @JoinColumn()
+  @ManyToOne(() => Skill, (skill) => skill.character_skills)
   skill: Skill;
 }

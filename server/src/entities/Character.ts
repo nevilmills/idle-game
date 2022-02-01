@@ -4,6 +4,7 @@ import {
   Column,
   Entity,
   OneToMany,
+  PrimaryColumn,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Character_Skill } from "./Character_Skill";
@@ -14,14 +15,6 @@ export class Character extends BaseEntity {
   @Field()
   @PrimaryGeneratedColumn()
   id!: number;
-
-  @Field(() => Int)
-  @Column({ unique: true })
-  userId!: number;
-
-  @Field()
-  @Column()
-  name!: string;
 
   @Field(() => Int)
   @Column({ type: "int", default: 0 })

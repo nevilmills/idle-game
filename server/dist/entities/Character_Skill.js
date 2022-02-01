@@ -41,8 +41,7 @@ __decorate([
     __metadata("design:type", Character_1.Character)
 ], Character_Skill.prototype, "character", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => Skill_1.Skill),
-    (0, typeorm_1.JoinColumn)(),
+    (0, typeorm_1.ManyToOne)(() => Skill_1.Skill, (skill) => skill.character_skills),
     __metadata("design:type", Skill_1.Skill)
 ], Character_Skill.prototype, "skill", void 0);
 Character_Skill = __decorate([

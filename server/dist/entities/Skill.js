@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Skill = void 0;
 const type_graphql_1 = require("type-graphql");
 const typeorm_1 = require("typeorm");
+const Character_Skill_1 = require("./Character_Skill");
 let Skill = class Skill extends typeorm_1.BaseEntity {
 };
 __decorate([
@@ -24,6 +25,10 @@ __decorate([
     (0, typeorm_1.Column)({ unique: true }),
     __metadata("design:type", String)
 ], Skill.prototype, "name", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => Character_Skill_1.Character_Skill, (character_skill) => character_skill.skill),
+    __metadata("design:type", Array)
+], Skill.prototype, "character_skills", void 0);
 Skill = __decorate([
     (0, type_graphql_1.ObjectType)(),
     (0, typeorm_1.Entity)()
