@@ -99,6 +99,8 @@ export class UserResolver {
 
       const charSkills = await Promise.all(promises);
 
+      // console.log("charskills: ", charSkills);
+
       const character = new Character();
       character.skills = charSkills;
       await character.save();

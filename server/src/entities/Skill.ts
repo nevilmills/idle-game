@@ -19,6 +19,7 @@ export class Skill extends BaseEntity {
   @Column({ unique: true })
   name!: string;
 
+  @Field(() => [Character_Skill])
   @OneToMany(() => Character_Skill, (character_skill) => character_skill.skill)
   character_skills: Character_Skill[];
 }

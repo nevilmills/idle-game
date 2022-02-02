@@ -32,10 +32,12 @@ __decorate([
     __metadata("design:type", Number)
 ], Character_Skill.prototype, "xp", void 0);
 __decorate([
+    (0, type_graphql_1.Field)(() => Character_1.Character),
     (0, typeorm_1.ManyToOne)(() => Character_1.Character, (character) => character.skills),
     __metadata("design:type", Character_1.Character)
 ], Character_Skill.prototype, "character", void 0);
 __decorate([
+    (0, type_graphql_1.Field)(() => Skill_1.Skill),
     (0, typeorm_1.ManyToOne)(() => Skill_1.Skill, (skill) => skill.character_skills),
     __metadata("design:type", Skill_1.Skill)
 ], Character_Skill.prototype, "skill", void 0);

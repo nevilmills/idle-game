@@ -20,6 +20,7 @@ export class Character extends BaseEntity {
   @Column({ type: "int", default: 0 })
   coins!: number;
 
+  @Field(() => [Character_Skill])
   @OneToMany(() => Character_Skill, (charSkill) => charSkill.character)
   skills: Character_Skill[];
 }

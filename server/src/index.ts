@@ -16,6 +16,7 @@ import { Character_Skill } from "./entities/Character_Skill";
 import { Skill } from "./entities/Skill";
 import { SkillResolver } from "./resolvers/skill";
 import { Character } from "./entities/Character";
+import { CharacterResolver } from "./resolvers/character";
 
 const main = async () => {
   const conn = await createConnection({
@@ -30,7 +31,11 @@ const main = async () => {
   });
 
   // await conn.runMigrations();
-
+  //
+  // const users = await User.find({});
+  // users.forEach(async (user) => await user.remove());
+  // const users = await Character.find({});
+  // await Character.remove(users);
   // await User.delete({});
   // await Character.delete({});
   // await Character_Skill.delete({});
@@ -66,7 +71,7 @@ const main = async () => {
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [UserResolver, SkillResolver],
+      resolvers: [UserResolver, SkillResolver, CharacterResolver],
       validate: false,
     }),
     context: ({ req, res }) => ({

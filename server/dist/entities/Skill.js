@@ -26,6 +26,7 @@ __decorate([
     __metadata("design:type", String)
 ], Skill.prototype, "name", void 0);
 __decorate([
+    (0, type_graphql_1.Field)(() => [Character_Skill_1.Character_Skill]),
     (0, typeorm_1.OneToMany)(() => Character_Skill_1.Character_Skill, (character_skill) => character_skill.skill),
     __metadata("design:type", Array)
 ], Skill.prototype, "character_skills", void 0);

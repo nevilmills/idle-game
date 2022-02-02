@@ -20,6 +20,7 @@ const Character_Skill_1 = require("./entities/Character_Skill");
 const Skill_1 = require("./entities/Skill");
 const skill_1 = require("./resolvers/skill");
 const Character_1 = require("./entities/Character");
+const character_1 = require("./resolvers/character");
 const main = async () => {
     const conn = await (0, typeorm_1.createConnection)({
         type: "postgres",
@@ -52,7 +53,7 @@ const main = async () => {
     }));
     const apolloServer = new apollo_server_express_1.ApolloServer({
         schema: await (0, type_graphql_1.buildSchema)({
-            resolvers: [user_1.UserResolver, skill_1.SkillResolver],
+            resolvers: [user_1.UserResolver, skill_1.SkillResolver, character_1.CharacterResolver],
             validate: false,
         }),
         context: ({ req, res }) => ({

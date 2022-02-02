@@ -27,9 +27,11 @@ export class Character_Skill extends BaseEntity {
   @Column({ default: 0 })
   xp: number;
 
+  @Field(() => Character)
   @ManyToOne(() => Character, (character) => character.skills)
   character: Character;
 
+  @Field(() => Skill)
   @ManyToOne(() => Skill, (skill) => skill.character_skills)
   skill: Skill;
 }
