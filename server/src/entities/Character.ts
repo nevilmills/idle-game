@@ -4,7 +4,6 @@ import {
   Column,
   Entity,
   OneToMany,
-  PrimaryColumn,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Character_Skill } from "./Character_Skill";

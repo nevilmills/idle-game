@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CharacterResolver = void 0;
 const Character_1 = require("../entities/Character");
 const type_graphql_1 = require("type-graphql");
-const Skill_1 = require("../entities/Skill");
 let CharacterResolver = class CharacterResolver {
     async characters() {
         return await Character_1.Character.find({});
@@ -38,7 +37,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CharacterResolver.prototype, "character", null);
 CharacterResolver = __decorate([
-    (0, type_graphql_1.Resolver)(Skill_1.Skill)
+    (0, type_graphql_1.Resolver)(Character_1.Character)
 ], CharacterResolver);
 exports.CharacterResolver = CharacterResolver;
 //# sourceMappingURL=character.js.map

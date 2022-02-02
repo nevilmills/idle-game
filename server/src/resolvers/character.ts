@@ -2,7 +2,7 @@ import { Character } from "../entities/Character";
 import { Arg, Mutation, Query, Resolver } from "type-graphql";
 import { Skill } from "../entities/Skill";
 
-@Resolver(Skill)
+@Resolver(Character)
 export class CharacterResolver {
   // Fetches all characters
   @Query(() => [Character])

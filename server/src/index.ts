@@ -47,8 +47,8 @@ const main = async () => {
 
   app.use(
     cors({
-      // origin: "http://localhost:3000",
-      origin: "http://localhost:4000/graphql",
+      origin: "http://localhost:3000",
+      // origin: "http://localhost:4000/graphql",
       credentials: true,
     })
   );
