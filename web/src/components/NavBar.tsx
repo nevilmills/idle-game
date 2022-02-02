@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { useLogoutMutation, useMeQuery } from "../generated/graphql";
+import { NYANZA } from "../utils/constants";
 
 interface NavBarProps {}
 
@@ -20,7 +21,7 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
     return (
       <Box
         height={50}
-        bgColor="teal"
+        bgColor={NYANZA}
         display="flex"
         justifyContent="flex-end"
         alignItems="center"
@@ -43,7 +44,7 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
     return (
       <Box
         height={50}
-        bgColor="teal"
+        bgColor={NYANZA}
         display="flex"
         justifyContent="flex-end"
         alignItems="center"

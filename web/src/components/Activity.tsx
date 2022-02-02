@@ -1,5 +1,6 @@
 import { Box, Button, Flex } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { C_GREEN } from "../utils/constants";
 
 interface ActivityProps {}
 
@@ -31,7 +32,7 @@ export const Activity: React.FC<{}> = ({}) => {
     <Flex
       w={225}
       h={20}
-      backgroundColor="red"
+      backgroundColor={C_GREEN}
       m={4}
       p={2}
       flexDirection={"column"}
