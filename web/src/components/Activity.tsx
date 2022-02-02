@@ -1,6 +1,6 @@
 import { Box, Button, Flex } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { C_GREEN } from "../utils/constants";
+import { C_GREEN, NYANZA, ROSE } from "../utils/constants";
 
 interface ActivityProps {}
 
@@ -29,20 +29,21 @@ export const Activity: React.FC<{}> = ({}) => {
   };
 
   return (
-    <Flex
-      w={225}
-      h={20}
-      backgroundColor={C_GREEN}
-      m={4}
-      p={2}
-      flexDirection={"column"}
-      alignItems={"center"}
-    >
-      This is an activity
-      <Button size={"md"} onClick={handleClick}>
-        Start
-      </Button>
-      {count}
-    </Flex>
+    <Box w="250px" h="100px" m={4} borderRadius="15px" overflow="hidden">
+      <Box backgroundColor={NYANZA} height={2} width="100%" />
+      <Flex
+        w="100%"
+        h="100%"
+        backgroundColor={ROSE}
+        flexDirection={"column"}
+        alignItems={"center"}
+      >
+        This is an activity
+        <Button size={"md"} onClick={handleClick}>
+          Start
+        </Button>
+        {count}
+      </Flex>
+    </Box>
   );
 };
