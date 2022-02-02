@@ -26,7 +26,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Character.prototype, "coins", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => Character_Skill_1.Character_Skill, (character_skill) => character_skill.characterId),
+    (0, typeorm_1.OneToMany)(() => Character_Skill_1.Character_Skill, (charSkill) => charSkill.character),
     __metadata("design:type", Array)
 ], Character.prototype, "skills", void 0);
 Character = __decorate([

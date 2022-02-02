@@ -14,9 +14,12 @@ import {
 } from "type-graphql";
 import argon2 from "argon2";
 // import { UsernamePasswordInput } from "./UsernamePasswordInput";
-import { getConnection } from "typeorm";
-import { MyContext } from "src/types";
+import { getConnection, SaveOptions } from "typeorm";
+import { MyContext } from "../types";
 import { UsernamePasswordInput } from "./UsernamePasswordInput";
+import { Character } from "../entities/Character";
+import { Character_Skill } from "../entities/Character_Skill";
+import { Skill } from "../entities/Skill";
 
 @ObjectType()
 class FieldError {
@@ -82,20 +85,36 @@ export class UserResolver {
     let user;
 
     try {
-      const result = await getConnection()
-        .createQueryBuilder()
-        .insert()
-        .into(User)
-        .values({ username: options.username, password: hashedPassword })
-        .returning("*")
-        .execute();
+      // initialize user's character and skills
 
-      user = result.raw[0];
-      console.log("user variable: ", user);
+      // create a charSkill for each skill in the skills table
+      const skills = await Skill.find({});
+
+      const promises = skills.map(async (skill) => {
+        const charSkill = new Character_Skill();
+        charSkill.skill = skill;
+        await charSkill.save();
+        return charSkill;
+      });
+
+      const charSkills = await Promise.all(promises);
+
+      const character = new Character();
+      character.skills = charSkills;
+      await character.save();
+
+      // create the user
+      user = new User();
+      user.username = options.username;
+      user.password = hashedPassword;
+      user.character = character;
+      await user.save();
     } catch (err) {
       if (err.code === "23505") {
         //duplicate username error
         throw new Error("username already taken");
+      } else {
+        throw new Error(`error while initializing character: ${err}`);
       }
     }
 

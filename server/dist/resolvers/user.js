@@ -19,8 +19,10 @@ exports.UserResolver = void 0;
 const User_1 = require("../entities/User");
 const type_graphql_1 = require("type-graphql");
 const argon2_1 = __importDefault(require("argon2"));
-const typeorm_1 = require("typeorm");
 const UsernamePasswordInput_1 = require("./UsernamePasswordInput");
+const Character_1 = require("../entities/Character");
+const Character_Skill_1 = require("../entities/Character_Skill");
+const Skill_1 = require("../entities/Skill");
 let FieldError = class FieldError {
 };
 __decorate([
@@ -71,19 +73,29 @@ let UserResolver = class UserResolver {
         const hashedPassword = await argon2_1.default.hash(options.password);
         let user;
         try {
-            const result = await (0, typeorm_1.getConnection)()
-                .createQueryBuilder()
-                .insert()
-                .into(User_1.User)
-                .values({ username: options.username, password: hashedPassword })
-                .returning("*")
-                .execute();
-            user = result.raw[0];
-            console.log("user variable: ", user);
+            const skills = await Skill_1.Skill.find({});
+            const promises = skills.map(async (skill) => {
+                const charSkill = new Character_Skill_1.Character_Skill();
+                charSkill.skill = skill;
+                await charSkill.save();
+                return charSkill;
+            });
+            const charSkills = await Promise.all(promises);
+            const character = new Character_1.Character();
+            character.skills = charSkills;
+            await character.save();
+            user = new User_1.User();
+            user.username = options.username;
+            user.password = hashedPassword;
+            user.character = character;
+            await user.save();
         }
         catch (err) {
             if (err.code === "23505") {
                 throw new Error("username already taken");
+            }
+            else {
+                throw new Error(`error while initializing character: ${err}`);
             }
         }
         req.session.userId = user.id;

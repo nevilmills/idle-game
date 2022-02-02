@@ -34,7 +34,7 @@ const main = async () => {
     const RedisStore = (0, connect_redis_1.default)(express_session_1.default);
     const redis = new ioredis_1.default();
     app.use((0, cors_1.default)({
-        origin: "http://localhost:3000",
+        origin: "http://localhost:4000/graphql",
         credentials: true,
     }));
     app.use((0, express_session_1.default)({

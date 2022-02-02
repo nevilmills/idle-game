@@ -7,6 +7,7 @@ import {
   ManyToOne,
   OneToOne,
   PrimaryColumn,
+  PrimaryGeneratedColumn,
 } from "typeorm";
 import { Character } from "./Character";
 import { Skill } from "./Skill";
@@ -15,19 +16,15 @@ import { Skill } from "./Skill";
 @Entity()
 export class Character_Skill extends BaseEntity {
   @Field()
-  @PrimaryColumn()
-  characterId!: number;
+  @PrimaryGeneratedColumn()
+  id!: number;
 
   @Field()
-  @PrimaryColumn()
-  skillId: number;
-
-  @Field()
-  @Column()
+  @Column({ default: 1 })
   level: number;
 
   @Field()
-  @Column()
+  @Column({ default: 0 })
   xp: number;
 
   @ManyToOne(() => Character, (character) => character.skills)

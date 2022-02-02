@@ -32,6 +32,8 @@ const main = async () => {
   // await conn.runMigrations();
 
   // await User.delete({});
+  // await Character.delete({});
+  // await Character_Skill.delete({});
 
   const app = express();
 
@@ -40,8 +42,8 @@ const main = async () => {
 
   app.use(
     cors({
-      origin: "http://localhost:3000",
-      // origin: "http://localhost:4000/graphql",
+      // origin: "http://localhost:3000",
+      origin: "http://localhost:4000/graphql",
       credentials: true,
     })
   );
