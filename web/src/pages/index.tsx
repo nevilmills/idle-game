@@ -1,11 +1,11 @@
 import { Box, Flex } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useState } from "react";
-import { ActivityArea } from "../components/areas/ActivityArea";
-import { CharacterArea } from "../components/areas/CharacterArea";
+import { ActivityArea } from "../components/menus/ActivityArea";
+import { CharacterArea } from "../components/menus/CharacterMenu";
 import { NavBar } from "../components/NavBar";
 import { SideBar } from "../components/sidebar/SideBar";
-import { AreaContext } from "../utils/AreaContext";
+import { MenuContext } from "../utils/MenuContext";
 
 const Home: NextPage = () => {
   const [area, setArea] = useState(<CharacterArea />);
@@ -14,10 +14,10 @@ const Home: NextPage = () => {
     <Box>
       <NavBar />
       <Flex>
-        <AreaContext.Provider value={{ area, setArea }}>
+        <MenuContext.Provider value={{ area, setArea }}>
           <SideBar />
           {area}
-        </AreaContext.Provider>
+        </MenuContext.Provider>
       </Flex>
     </Box>
   );
