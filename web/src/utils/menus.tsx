@@ -1,5 +1,7 @@
-import { ActivityArea } from "../components/menus/ActivityArea";
 import { CharacterArea } from "../components/menus/CharacterMenu";
+import { FishingMenu } from "../components/menus/FishingMenu";
+import { MiningMenu } from "../components/menus/MiningMenu";
+import { WoodcuttingMenu } from "../components/menus/WoodcuttingMenu";
 
 // menus
 interface menuSet {
@@ -12,9 +14,9 @@ interface menuSet {
 
 export const menus: menuSet = {
   home: <CharacterArea />,
-  woodcutting: <ActivityArea />,
-  fishing: <ActivityArea />,
-  mining: <ActivityArea />,
+  woodcutting: <WoodcuttingMenu />,
+  fishing: <FishingMenu />,
+  mining: <MiningMenu />,
 };
 
 // interface myObj {
