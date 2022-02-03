@@ -13,9 +13,9 @@ export const SideBar: React.FC<SideBarProps> = ({}) => {
         <SideBarButton linkedMenu="home" />
       </Box>
       <Flex mt={12} alignItems="center" flexDirection="column">
-        <SideBarButton linkedMenu="Woodcutting" />
-        <SideBarButton linkedMenu="Fishing" />
-        <SideBarButton linkedMenu="Mining" />
+        <SideBarButton linkedMenu="woodcutting" />
+        <SideBarButton linkedMenu="fishing" />
+        <SideBarButton linkedMenu="mining" />
       </Flex>
     </Box>
   );

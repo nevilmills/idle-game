@@ -22,7 +22,9 @@ export const SideBarButton: React.FC<SideBarButtonProps> = ({ linkedMenu }) => {
       mb={2}
       _hover={{ border: `1px solid ${GSA}` }}
     >
-      <Text color={"white"}>{linkedMenu}</Text>
+      <Text casing="capitalize" color={"white"}>
+        {linkedMenu}
+      </Text>
     </Box>
   );
 };
