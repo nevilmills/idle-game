@@ -11,6 +11,8 @@ export const SideBar: React.FC<SideBarProps> = ({}) => {
     <Box w={300} h="100vh" backgroundColor={ROSE}>
       <Flex mt={12} alignItems="center" flexDirection="column">
         <SideBarButton skill="Woodcutting" />
+        <SideBarButton skill="Fishing" />
+        <SideBarButton skill="Mining" />
       </Flex>
     </Box>
   );
