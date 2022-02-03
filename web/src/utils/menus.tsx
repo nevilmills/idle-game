@@ -18,17 +18,3 @@ export const menus: menuSet = {
   fishing: <FishingMenu />,
   mining: <MiningMenu />,
 };
-
-// interface myObj {
-//   name: string,
-//   age: number,
-// }
-
-// const obj: myObj = {
-//   name: "bob",
-//   age: 12,
-// }
-
-// const propIWant = "name";
-
-// obj[propIWant];
