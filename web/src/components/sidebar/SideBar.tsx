@@ -9,10 +9,13 @@ interface SideBarProps {}
 export const SideBar: React.FC<SideBarProps> = ({}) => {
   return (
     <Box w={300} h="100vh" backgroundColor={ROSE}>
+      <Box mt={12}>
+        <SideBarButton linkedArea="Home" />
+      </Box>
       <Flex mt={12} alignItems="center" flexDirection="column">
-        <SideBarButton skill="Woodcutting" />
-        <SideBarButton skill="Fishing" />
-        <SideBarButton skill="Mining" />
+        <SideBarButton linkedArea="Woodcutting" />
+        <SideBarButton linkedArea="Fishing" />
+        <SideBarButton linkedArea="Mining" />
       </Flex>
     </Box>
   );

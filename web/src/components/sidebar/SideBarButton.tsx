@@ -6,11 +6,11 @@ import { ctxParam } from "../../utils/types";
 import { ActivityArea } from "../areas/ActivityArea";
 
 interface SideBarButtonProps {
-  skill: string;
+  linkedArea: string;
 }
 
-export const SideBarButton: React.FC<SideBarButtonProps> = ({ skill }) => {
-  const { area, setArea } = useContext<any>(AreaContext);
+export const SideBarButton: React.FC<SideBarButtonProps> = ({ linkedArea }) => {
+  const { _, setArea } = useContext<any>(AreaContext);
 
   return (
     <Box
@@ -20,7 +20,7 @@ export const SideBarButton: React.FC<SideBarButtonProps> = ({ skill }) => {
       mb={2}
       _hover={{ border: `1px solid ${GSA}` }}
     >
-      <Text color={"white"}>{skill}</Text>
+      <Text color={"white"}>{linkedArea}</Text>
     </Box>
   );
 };
