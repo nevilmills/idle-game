@@ -6,23 +6,23 @@ interface TrainerProps {}
 
 export const Trainer: React.FC<{}> = ({}) => {
   let [count, setCount] = useState(0);
-  const [isOn, setIsOn] = useState(false);
+  const [isTraining, setIsTraining] = useState(false);
   const [intervalId, setIntervalId] = useState<NodeJS.Timer | undefined>(
     undefined
   );
 
   // Increment count each second
   const handleClick = () => {
-    if (!isOn) {
-      setIsOn(!isOn);
+    if (!isTraining) {
+      setIsTraining((isTraining) => !isTraining);
 
       setIntervalId(
         setInterval(() => {
-          setCount(count++);
+          setCount((count) => count + 1);
         }, 1000)
       );
     } else {
-      setIsOn(!isOn);
+      setIsTraining(!isTraining);
       setIntervalId(undefined);
       clearInterval(intervalId!);
     }
