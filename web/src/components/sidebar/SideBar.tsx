@@ -1,7 +1,6 @@
 import { Box, Flex } from "@chakra-ui/react";
 import React, { Dispatch, SetStateAction } from "react";
 import { ROSE } from "../../utils/constants";
-import { ActivityArea } from "../menus/ActivityArea";
 import { SideBarButton } from "./SideBarButton";
 
 interface SideBarProps {}

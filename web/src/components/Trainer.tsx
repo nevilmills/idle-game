@@ -2,9 +2,9 @@ import { Box, Button, Flex } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { C_GREEN, NYANZA, ROSE } from "../utils/constants";
 
-interface ActivityProps {}
+interface TrainerProps {}
 
-export const Activity: React.FC<{}> = ({}) => {
+export const Trainer: React.FC<{}> = ({}) => {
   let [count, setCount] = useState(0);
   const [isOn, setIsOn] = useState(false);
   const [intervalId, setIntervalId] = useState<NodeJS.Timer | undefined>(
@@ -38,7 +38,7 @@ export const Activity: React.FC<{}> = ({}) => {
         flexDirection={"column"}
         alignItems={"center"}
       >
-        This is an activity
+        This is a trainer
         <Button size={"md"} onClick={handleClick}>
           Start
         </Button>

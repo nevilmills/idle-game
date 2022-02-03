@@ -3,7 +3,6 @@ import React, { useContext } from "react";
 import { MenuContext } from "../../utils/MenuContext";
 import { GSA } from "../../utils/constants";
 import { ctxParam } from "../../utils/types";
-import { ActivityArea } from "../menus/ActivityArea";
 import { menus } from "../../utils/menus";
 
 interface SideBarButtonProps {

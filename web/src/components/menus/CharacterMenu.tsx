@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react";
 import React from "react";
 import { useMeQuery } from "../../generated/graphql";
 import { V_GREEN } from "../../utils/constants";
-import { Activity } from "../Activity";
+import { Trainer } from "../Trainer";
 
 interface CharacterAreaProps {}
 
