@@ -16,8 +16,12 @@ import { Skill } from "./Skill";
 @Entity()
 export class Character_Skill extends BaseEntity {
   @Field()
-  @PrimaryGeneratedColumn()
-  id!: number;
+  @PrimaryColumn()
+  characterId!: number;
+
+  @Field()
+  @PrimaryColumn()
+  skillId!: number;
 
   @Field()
   @Column({ default: 1 })
@@ -27,11 +31,33 @@ export class Character_Skill extends BaseEntity {
   @Column({ default: 0 })
   xp: number;
 
-  @Field(() => Character)
   @ManyToOne(() => Character, (character) => character.skills)
   character: Character;
 
-  @Field(() => Skill)
   @ManyToOne(() => Skill, (skill) => skill.character_skills)
   skill: Skill;
 }
+
+// @ObjectType()
+// @Entity()
+// export class Character_Skill extends BaseEntity {
+//   @Field()
+//   @PrimaryGeneratedColumn()
+//   id!: number;
+
+//   @Field()
+//   @Column({ default: 1 })
+//   level: number;
+
+//   @Field()
+//   @Column({ default: 0 })
+//   xp: number;
+
+//   @Field(() => Character)
+//   @ManyToOne(() => Character, (character) => character.skills)
+//   character: Character;
+
+//   @Field(() => Skill)
+//   @ManyToOne(() => Skill, (skill) => skill.character_skills)
+//   skill: Skill;
+// }
