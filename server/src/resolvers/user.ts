@@ -83,6 +83,7 @@ export class UserResolver {
 
     const hashedPassword = await argon2.hash(options.password);
     let user;
+    let character;
 
     try {
       // initialize user's character and skills
@@ -101,7 +102,7 @@ export class UserResolver {
 
       // console.log("charskills: ", charSkills);
 
-      const character = new Character();
+      character = new Character();
       character.skills = charSkills;
       await character.save();
 
@@ -121,6 +122,7 @@ export class UserResolver {
     }
 
     req.session.userId = user.id;
+    req.session.charId = character.id;
 
     return user;
   }
@@ -131,7 +133,15 @@ export class UserResolver {
     @Arg("password") password: string,
     @Ctx() { req }: MyContext
   ): Promise<User> {
-    const user = await User.findOne({ username: username });
+    const user = (
+      await getConnection().query(
+        `
+    select u.*
+    from "user" u
+    where u."username" = '${username}';
+    `
+      )
+    )[0];
 
     if (!user) {
       throw new Error("Incorrect username.");
@@ -144,6 +154,9 @@ export class UserResolver {
     }
 
     req.session.userId = user.id;
+    req.session.charId = user.characterId;
+
+    console.log("character: ", user);
 
     return user;
   }

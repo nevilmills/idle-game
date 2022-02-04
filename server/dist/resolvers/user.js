@@ -19,6 +19,7 @@ exports.UserResolver = void 0;
 const User_1 = require("../entities/User");
 const type_graphql_1 = require("type-graphql");
 const argon2_1 = __importDefault(require("argon2"));
+const typeorm_1 = require("typeorm");
 const UsernamePasswordInput_1 = require("./UsernamePasswordInput");
 const Character_1 = require("../entities/Character");
 const Character_Skill_1 = require("../entities/Character_Skill");
@@ -72,6 +73,7 @@ let UserResolver = class UserResolver {
     async register(options, { req }) {
         const hashedPassword = await argon2_1.default.hash(options.password);
         let user;
+        let character;
         try {
             const skills = await Skill_1.Skill.find({});
             const promises = skills.map(async (skill) => {
@@ -81,7 +83,7 @@ let UserResolver = class UserResolver {
                 return charSkill;
             });
             const charSkills = await Promise.all(promises);
-            const character = new Character_1.Character();
+            character = new Character_1.Character();
             character.skills = charSkills;
             await character.save();
             user = new User_1.User();
@@ -99,10 +101,15 @@ let UserResolver = class UserResolver {
             }
         }
         req.session.userId = user.id;
+        req.session.charId = character.id;
         return user;
     }
     async login(username, password, { req }) {
-        const user = await User_1.User.findOne({ username: username });
+        const user = (await (0, typeorm_1.getConnection)().query(`
+    select u.*
+    from "user" u
+    where u."username" = '${username}';
+    `))[0];
         if (!user) {
             throw new Error("Incorrect username.");
         }
@@ -111,6 +118,8 @@ let UserResolver = class UserResolver {
             throw new Error("Incorrect password.");
         }
         req.session.userId = user.id;
+        req.session.charId = user.characterId;
+        console.log("character: ", user);
         return user;
     }
 };
