@@ -14,16 +14,16 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CharacterSkillResolver = void 0;
 const type_graphql_1 = require("type-graphql");
-const Character_Skill_1 = require("src/entities/Character_Skill");
-const typeorm_1 = require("typeorm");
+const Character_Skill_1 = require("../entities/Character_Skill");
 let CharacterSkillResolver = class CharacterSkillResolver {
     async giveExp(skillId, value, { req }) {
-        const charSkill = (await (0, typeorm_1.getConnection)().query(`
-        select c.*
-        from character_skill c
-        where c."characterId" = $1 and c."skillId" = $2;
-        `, [req.session.charId, skillId]))[0];
-        console.log("character skill: ", charSkill);
+        const charSkill = await Character_Skill_1.Character_Skill.findOne({
+            where: { characterId: req.session.charId, skillId },
+        });
+        if (!charSkill) {
+            throw Error("character_skill not found. check if you are logged in.");
+        }
+        charSkill.xp = charSkill.xp + value;
         return charSkill;
     }
 };
