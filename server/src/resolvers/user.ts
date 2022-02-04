@@ -82,29 +82,28 @@ export class UserResolver {
     //create a new user and insert into the database
 
     const hashedPassword = await argon2.hash(options.password);
-    let user;
-    let character;
+    let user: User;
+    let character: Character;
 
+    // initialize user's character and skills
     try {
-      // initialize user's character and skills
+      character = new Character();
+      await character.save();
 
       // create a charSkill for each skill in the skills table
       const skills = await Skill.find({});
 
       const promises = skills.map(async (skill) => {
         const charSkill = new Character_Skill();
-        charSkill.skill = skill;
+        charSkill.skillId = skill.id;
+        charSkill.characterId = character.id;
         await charSkill.save();
         return charSkill;
       });
 
       const charSkills = await Promise.all(promises);
 
-      // console.log("charskills: ", charSkills);
-
-      character = new Character();
-      character.skills = charSkills;
-      await character.save();
+      console.log("charskills: ", charSkills);
 
       // create the user
       user = new User();

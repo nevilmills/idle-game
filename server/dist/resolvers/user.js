@@ -75,17 +75,18 @@ let UserResolver = class UserResolver {
         let user;
         let character;
         try {
+            character = new Character_1.Character();
+            await character.save();
             const skills = await Skill_1.Skill.find({});
             const promises = skills.map(async (skill) => {
                 const charSkill = new Character_Skill_1.Character_Skill();
-                charSkill.skill = skill;
+                charSkill.skillId = skill.id;
+                charSkill.characterId = character.id;
                 await charSkill.save();
                 return charSkill;
             });
             const charSkills = await Promise.all(promises);
-            character = new Character_1.Character();
-            character.skills = charSkills;
-            await character.save();
+            console.log("charskills: ", charSkills);
             user = new User_1.User();
             user.username = options.username;
             user.password = hashedPassword;
