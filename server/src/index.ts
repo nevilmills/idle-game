@@ -17,6 +17,7 @@ import { Skill } from "./entities/Skill";
 import { SkillResolver } from "./resolvers/skill";
 import { Character } from "./entities/Character";
 import { CharacterResolver } from "./resolvers/character";
+import { CharacterSkillResolver } from "./resolvers/character_skill";
 
 const main = async () => {
   const conn = await createConnection({
@@ -71,7 +72,12 @@ const main = async () => {
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [UserResolver, SkillResolver, CharacterResolver],
+      resolvers: [
+        UserResolver,
+        SkillResolver,
+        CharacterResolver,
+        CharacterSkillResolver,
+      ],
       validate: false,
     }),
     context: ({ req, res }) => ({
