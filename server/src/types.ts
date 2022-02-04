@@ -4,6 +4,7 @@ import { Request, Response } from "express";
 declare module "express-session" {
   export interface SessionData {
     userId: number;
+    charId: number;
   }
 }
 
