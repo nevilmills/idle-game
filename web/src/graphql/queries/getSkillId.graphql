@@ -1,0 +1,6 @@
+query GetSkillId($name: String!) {
+  getSkillId(name: $name) {
+    id
+    name
+  }
+}

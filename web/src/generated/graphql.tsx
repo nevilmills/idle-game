@@ -15,11 +15,39 @@ export type Scalars = {
   Float: number;
 };
 
+export type Character = {
+  __typename?: 'Character';
+  coins: Scalars['Int'];
+  id: Scalars['Float'];
+  skills: Array<Character_Skill>;
+};
+
+export type Character_Skill = {
+  __typename?: 'Character_Skill';
+  characterId: Scalars['Float'];
+  level: Scalars['Float'];
+  skillId: Scalars['Float'];
+  xp: Scalars['Float'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  addSkill: Scalars['Boolean'];
+  giveExp: Character_Skill;
   login: User;
   logout: Scalars['Boolean'];
   register: User;
+};
+
+
+export type MutationAddSkillArgs = {
+  name: Scalars['String'];
+};
+
+
+export type MutationGiveExpArgs = {
+  skillId: Scalars['Float'];
+  value: Scalars['Float'];
 };
 
 
@@ -35,14 +63,34 @@ export type MutationRegisterArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  character: Character;
+  characters: Array<Character>;
+  getSkillId: Skill;
   me: User;
   user: User;
   users: Array<User>;
 };
 
 
+export type QueryCharacterArgs = {
+  id: Scalars['Float'];
+};
+
+
+export type QueryGetSkillIdArgs = {
+  name: Scalars['String'];
+};
+
+
 export type QueryUserArgs = {
   username: Scalars['String'];
+};
+
+export type Skill = {
+  __typename?: 'Skill';
+  character_skills: Array<Character_Skill>;
+  id: Scalars['Float'];
+  name: Scalars['String'];
 };
 
 export type User = {
@@ -77,6 +125,13 @@ export type RegisterMutationVariables = Exact<{
 
 
 export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'User', id: number, username: string } };
+
+export type GetSkillIdQueryVariables = Exact<{
+  name: Scalars['String'];
+}>;
+
+
+export type GetSkillIdQuery = { __typename?: 'Query', getSkillId: { __typename?: 'Skill', id: number, name: string } };
 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -116,6 +171,18 @@ export const RegisterDocument = gql`
 
 export function useRegisterMutation() {
   return Urql.useMutation<RegisterMutation, RegisterMutationVariables>(RegisterDocument);
+};
+export const GetSkillIdDocument = gql`
+    query GetSkillId($name: String!) {
+  getSkillId(name: $name) {
+    id
+    name
+  }
+}
+    `;
+
+export function useGetSkillIdQuery(options: Omit<Urql.UseQueryArgs<GetSkillIdQueryVariables>, 'query'> = {}) {
+  return Urql.useQuery<GetSkillIdQuery>({ query: GetSkillIdDocument, ...options });
 };
 export const MeDocument = gql`
     query Me {
