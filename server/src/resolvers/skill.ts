@@ -1,4 +1,4 @@
-import { Arg, Mutation, Resolver } from "type-graphql";
+import { Arg, Mutation, Query, Resolver } from "type-graphql";
 import { Skill } from "../entities/Skill";
 
 @Resolver(Skill)
@@ -11,5 +11,18 @@ export class SkillResolver {
     } catch (err) {
       throw Error(err);
     }
+  }
+
+  @Query(() => Skill)
+  async getSkillId(@Arg("name") name: string) {
+    let skill;
+
+    try {
+      skill = await Skill.findOne({ name });
+    } catch (err) {
+      throw Error(`Error fetching skill: ${err}`);
+    }
+
+    return skill;
   }
 }

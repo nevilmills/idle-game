@@ -25,6 +25,16 @@ let SkillResolver = class SkillResolver {
             throw Error(err);
         }
     }
+    async getSkillId(name) {
+        let skill;
+        try {
+            skill = await Skill_1.Skill.findOne({ name });
+        }
+        catch (err) {
+            throw Error(`Error fetching skill: ${err}`);
+        }
+        return skill;
+    }
 };
 __decorate([
     (0, type_graphql_1.Mutation)(() => Boolean),
@@ -33,6 +43,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], SkillResolver.prototype, "addSkill", null);
+__decorate([
+    (0, type_graphql_1.Query)(() => Skill_1.Skill),
+    __param(0, (0, type_graphql_1.Arg)("name")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], SkillResolver.prototype, "getSkillId", null);
 SkillResolver = __decorate([
     (0, type_graphql_1.Resolver)(Skill_1.Skill)
 ], SkillResolver);
