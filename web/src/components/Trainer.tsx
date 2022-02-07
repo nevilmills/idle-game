@@ -1,17 +1,23 @@
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { useGiveExpMutation } from "../generated/graphql";
 import { C_GREEN, NYANZA, ROSE } from "../utils/constants";
 
 interface TrainerProps {
-  skillId: number | undefined;
+  skillId: number;
+  skillObj: {
+    name: string;
+    exp: number;
+    time: number;
+  };
 }
 
-export const Trainer: React.FC<TrainerProps> = ({ skillId }) => {
-  let [count, setCount] = useState(0);
+export const Trainer: React.FC<TrainerProps> = ({ skillId, skillObj }) => {
   const [isTraining, setIsTraining] = useState(false);
   const [intervalId, setIntervalId] = useState<NodeJS.Timer | undefined>(
     undefined
   );
+  const [, giveExp] = useGiveExpMutation();
 
   // Increment count each second
   const handleClick = () => {
@@ -20,8 +26,9 @@ export const Trainer: React.FC<TrainerProps> = ({ skillId }) => {
 
       setIntervalId(
         setInterval(() => {
-          setCount((count) => count + 1);
-        }, 1000)
+          giveExp({ skillId, value: skillObj.exp });
+          console.log("exp given!");
+        }, skillObj.time)
       );
     } else {
       setIsTraining(!isTraining);
@@ -40,11 +47,12 @@ export const Trainer: React.FC<TrainerProps> = ({ skillId }) => {
         flexDirection={"column"}
         alignItems={"center"}
       >
-        This is a trainer
-        <Button size={"md"} onClick={handleClick}>
+        <Text casing="capitalize" color={"white"}>
+          {skillObj.name}
+        </Text>
+        <Button size={"sm"} onClick={handleClick}>
           Start
         </Button>
-        {count}
       </Flex>
     </Box>
   );
