@@ -7,9 +7,29 @@ export const ROSE = "#664147";
 
 // woodcutting experience
 export const trees = {
-  normal: 25,
-  oak: 37.5,
-  willow: 67.5,
-  maple: 100,
-  yew: 175,
+  normal: {
+    name: "Normal Tree",
+    exp: 25,
+    time: 1750,
+  },
+  oak: {
+    name: "Oak Tree",
+    exp: 37.5,
+    time: 2250,
+  },
+  willow: {
+    name: "Willow Tree",
+    exp: 67.5,
+    time: 2750,
+  },
+  maple: {
+    name: "Maple Tree",
+    exp: 100,
+    time: 3000,
+  },
+  yew: {
+    name: "Yew Tree",
+    exp: 175,
+    time: 4500,
+  },
 };
