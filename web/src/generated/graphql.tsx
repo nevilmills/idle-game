@@ -46,8 +46,8 @@ export type MutationAddSkillArgs = {
 
 
 export type MutationGiveExpArgs = {
-  skillId: Scalars['Float'];
-  value: Scalars['Float'];
+  skillId: Scalars['Int'];
+  value: Scalars['Int'];
 };
 
 
@@ -106,6 +106,14 @@ export type UsernamePasswordInput = {
   username: Scalars['String'];
 };
 
+export type GiveExpMutationVariables = Exact<{
+  skillId: Scalars['Int'];
+  value: Scalars['Int'];
+}>;
+
+
+export type GiveExpMutation = { __typename?: 'Mutation', giveExp: { __typename?: 'Character_Skill', level: number, xp: number } };
+
 export type LoginMutationVariables = Exact<{
   username: Scalars['String'];
   password: Scalars['String'];
@@ -139,6 +147,18 @@ export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 export type MeQuery = { __typename?: 'Query', me: { __typename?: 'User', id: number, username: string } };
 
 
+export const GiveExpDocument = gql`
+    mutation GiveExp($skillId: Int!, $value: Int!) {
+  giveExp(skillId: $skillId, value: $value) {
+    level
+    xp
+  }
+}
+    `;
+
+export function useGiveExpMutation() {
+  return Urql.useMutation<GiveExpMutation, GiveExpMutationVariables>(GiveExpDocument);
+};
 export const LoginDocument = gql`
     mutation Login($username: String!, $password: String!) {
   login(username: $username, password: $password) {

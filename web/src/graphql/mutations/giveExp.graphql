@@ -1,0 +1,6 @@
+mutation GiveExp($skillId: Int!, $value: Int!) {
+  giveExp(skillId: $skillId, value: $value) {
+    level
+    xp
+  }
+}
