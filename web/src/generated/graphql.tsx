@@ -47,7 +47,7 @@ export type MutationAddSkillArgs = {
 
 export type MutationGiveExpArgs = {
   skillId: Scalars['Int'];
-  value: Scalars['Int'];
+  value: Scalars['Float'];
 };
 
 
@@ -108,7 +108,7 @@ export type UsernamePasswordInput = {
 
 export type GiveExpMutationVariables = Exact<{
   skillId: Scalars['Int'];
-  value: Scalars['Int'];
+  value: Scalars['Float'];
 }>;
 
 
@@ -148,7 +148,7 @@ export type MeQuery = { __typename?: 'Query', me: { __typename?: 'User', id: num
 
 
 export const GiveExpDocument = gql`
-    mutation GiveExp($skillId: Int!, $value: Int!) {
+    mutation GiveExp($skillId: Int!, $value: Float!) {
   giveExp(skillId: $skillId, value: $value) {
     level
     xp

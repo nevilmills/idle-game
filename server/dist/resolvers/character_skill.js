@@ -31,7 +31,7 @@ let CharacterSkillResolver = class CharacterSkillResolver {
 __decorate([
     (0, type_graphql_1.Mutation)(() => Character_Skill_1.Character_Skill),
     __param(0, (0, type_graphql_1.Arg)("skillId", () => type_graphql_1.Int)),
-    __param(1, (0, type_graphql_1.Arg)("value", () => type_graphql_1.Int)),
+    __param(1, (0, type_graphql_1.Arg)("value", () => type_graphql_1.Float)),
     __param(2, (0, type_graphql_1.Ctx)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Number, Object]),

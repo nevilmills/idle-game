@@ -1,13 +1,4 @@
-import {
-  Arg,
-  Ctx,
-  Field,
-  Int,
-  Mutation,
-  ObjectType,
-  Query,
-  Resolver,
-} from "type-graphql";
+import { Arg, Ctx, Float, Int, Mutation, Resolver } from "type-graphql";
 import { Character_Skill } from "../entities/Character_Skill";
 import { MyContext } from "src/types";
 
@@ -16,7 +7,7 @@ export class CharacterSkillResolver {
   @Mutation(() => Character_Skill)
   async giveExp(
     @Arg("skillId", () => Int) skillId: number,
-    @Arg("value", () => Int) value: number,
+    @Arg("value", () => Float) value: number,
     @Ctx() { req }: MyContext
   ): Promise<Character_Skill> {
     const charSkill = await Character_Skill.findOne({

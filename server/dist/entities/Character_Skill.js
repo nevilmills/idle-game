@@ -28,12 +28,12 @@ __decorate([
 ], Character_Skill.prototype, "skillId", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
-    (0, typeorm_1.Column)({ default: 1 }),
+    (0, typeorm_1.Column)({ type: "int", default: 1 }),
     __metadata("design:type", Number)
 ], Character_Skill.prototype, "level", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
-    (0, typeorm_1.Column)({ default: 0 }),
+    (0, typeorm_1.Column)({ type: "float", default: 0 }),
     __metadata("design:type", Number)
 ], Character_Skill.prototype, "xp", void 0);
 __decorate([
