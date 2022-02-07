@@ -2,6 +2,7 @@ import {
   Arg,
   Ctx,
   Field,
+  Int,
   Mutation,
   ObjectType,
   Query,
@@ -14,8 +15,8 @@ import { MyContext } from "src/types";
 export class CharacterSkillResolver {
   @Mutation(() => Character_Skill)
   async giveExp(
-    @Arg("skillId") skillId: number,
-    @Arg("value") value: number,
+    @Arg("skillId", () => Int) skillId: number,
+    @Arg("value", () => Int) value: number,
     @Ctx() { req }: MyContext
   ): Promise<Character_Skill> {
     const charSkill = await Character_Skill.findOne({
@@ -27,6 +28,7 @@ export class CharacterSkillResolver {
     }
 
     charSkill.xp = charSkill.xp + value;
+    charSkill.save();
 
     return charSkill;
   }
