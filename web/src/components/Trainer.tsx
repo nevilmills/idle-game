@@ -2,9 +2,11 @@ import { Box, Button, Flex } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { C_GREEN, NYANZA, ROSE } from "../utils/constants";
 
-interface TrainerProps {}
+interface TrainerProps {
+  skillId: number | undefined;
+}
 
-export const Trainer: React.FC<{}> = ({}) => {
+export const Trainer: React.FC<TrainerProps> = ({ skillId }) => {
   let [count, setCount] = useState(0);
   const [isTraining, setIsTraining] = useState(false);
   const [intervalId, setIntervalId] = useState<NodeJS.Timer | undefined>(
