@@ -1,8 +1,12 @@
 export const __prod__ = process.env.NODE_ENV !== "production";
 export const COOKIE_NAME = "qid_idle";
 
+interface Table {
+  [key: number]: number;
+}
+
 // Experience required for each level
-export const expTable = {
+export const expTable: Table = {
   "1": 83,
   "2": 174,
   "3": 276,
