@@ -15,6 +15,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CharacterSkillResolver = void 0;
 const type_graphql_1 = require("type-graphql");
 const Character_Skill_1 = require("../entities/Character_Skill");
+const constants_1 = require("../constants");
+let GiveExpResponse = class GiveExpResponse {
+};
+__decorate([
+    (0, type_graphql_1.Field)(() => Character_Skill_1.Character_Skill),
+    __metadata("design:type", Character_Skill_1.Character_Skill)
+], GiveExpResponse.prototype, "charSkill", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => Boolean),
+    __metadata("design:type", Boolean)
+], GiveExpResponse.prototype, "leveled", void 0);
+GiveExpResponse = __decorate([
+    (0, type_graphql_1.ObjectType)()
+], GiveExpResponse);
 let CharacterSkillResolver = class CharacterSkillResolver {
     async giveExp(skillId, value, { req }) {
         const charSkill = await Character_Skill_1.Character_Skill.findOne({
@@ -24,12 +38,17 @@ let CharacterSkillResolver = class CharacterSkillResolver {
             throw Error("character_skill not found. check if you are logged in.");
         }
         charSkill.xp = charSkill.xp + value;
-        charSkill.save();
-        return charSkill;
+        if (charSkill.xp >= constants_1.expTable[charSkill.level]) {
+            charSkill.level = charSkill.level + 1;
+            await charSkill.save();
+            return { charSkill, leveled: true };
+        }
+        await charSkill.save();
+        return { charSkill };
     }
 };
 __decorate([
-    (0, type_graphql_1.Mutation)(() => Character_Skill_1.Character_Skill),
+    (0, type_graphql_1.Mutation)(() => GiveExpResponse),
     __param(0, (0, type_graphql_1.Arg)("skillId", () => type_graphql_1.Int)),
     __param(1, (0, type_graphql_1.Arg)("value", () => type_graphql_1.Float)),
     __param(2, (0, type_graphql_1.Ctx)()),
