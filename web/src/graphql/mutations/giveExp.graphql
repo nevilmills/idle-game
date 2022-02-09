@@ -1,6 +1,9 @@
 mutation GiveExp($skillId: Int!, $value: Float!) {
   giveExp(skillId: $skillId, value: $value) {
-    level
-    xp
+    charSkill {
+      skillId
+      level
+    }
+    leveled
   }
 }

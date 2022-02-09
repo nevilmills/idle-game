@@ -30,10 +30,16 @@ export type Character_Skill = {
   xp: Scalars['Float'];
 };
 
+export type GiveExpResponse = {
+  __typename?: 'GiveExpResponse';
+  charSkill: Character_Skill;
+  leveled: Scalars['Boolean'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addSkill: Scalars['Boolean'];
-  giveExp: Character_Skill;
+  giveExp: GiveExpResponse;
   login: User;
   logout: Scalars['Boolean'];
   register: User;
@@ -112,7 +118,7 @@ export type GiveExpMutationVariables = Exact<{
 }>;
 
 
-export type GiveExpMutation = { __typename?: 'Mutation', giveExp: { __typename?: 'Character_Skill', level: number, xp: number } };
+export type GiveExpMutation = { __typename?: 'Mutation', giveExp: { __typename?: 'GiveExpResponse', leveled: boolean, charSkill: { __typename?: 'Character_Skill', skillId: number, level: number } } };
 
 export type LoginMutationVariables = Exact<{
   username: Scalars['String'];
@@ -150,8 +156,11 @@ export type MeQuery = { __typename?: 'Query', me: { __typename?: 'User', id: num
 export const GiveExpDocument = gql`
     mutation GiveExp($skillId: Int!, $value: Float!) {
   giveExp(skillId: $skillId, value: $value) {
-    level
-    xp
+    charSkill {
+      skillId
+      level
+    }
+    leveled
   }
 }
     `;
