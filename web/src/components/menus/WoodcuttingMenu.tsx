@@ -26,6 +26,8 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
         <Trainer skillId={data?.getSkillId.id} skillObj={trees["normal"]} />
         <Trainer skillId={data?.getSkillId.id} skillObj={trees["oak"]} />
         <Trainer skillId={data?.getSkillId.id} skillObj={trees["willow"]} />
+        <Trainer skillId={data?.getSkillId.id} skillObj={trees["maple"]} />
+        <Trainer skillId={data?.getSkillId.id} skillObj={trees["yew"]} />
       </Flex>
     </Box>
   );

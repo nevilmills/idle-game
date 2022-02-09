@@ -25,9 +25,13 @@ export const Trainer: React.FC<TrainerProps> = ({ skillId, skillObj }) => {
       setIsTraining((isTraining) => !isTraining);
 
       setIntervalId(
-        setInterval(() => {
-          giveExp({ skillId, value: skillObj.exp });
-          console.log("exp given!");
+        setInterval(async () => {
+          const response = await giveExp({ skillId, value: skillObj.exp });
+          if (response.data?.giveExp.leveled) {
+            console.log("leveled");
+          } else {
+            console.log("exp given!");
+          }
         }, skillObj.time)
       );
     } else {

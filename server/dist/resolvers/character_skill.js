@@ -44,7 +44,7 @@ let CharacterSkillResolver = class CharacterSkillResolver {
             return { charSkill, leveled: true };
         }
         await charSkill.save();
-        return { charSkill };
+        return { charSkill, leveled: false };
     }
 };
 __decorate([

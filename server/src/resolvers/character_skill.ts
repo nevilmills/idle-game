@@ -48,6 +48,6 @@ export class CharacterSkillResolver {
 
     await charSkill.save();
 
-    return { charSkill };
+    return { charSkill, leveled: false };
   }
 }
