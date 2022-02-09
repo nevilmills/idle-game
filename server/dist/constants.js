@@ -1,7 +1,48 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DEFAULT_STATS = exports.COOKIE_NAME = exports.__prod__ = void 0;
+exports.expTable = exports.COOKIE_NAME = exports.__prod__ = void 0;
 exports.__prod__ = process.env.NODE_ENV !== "production";
 exports.COOKIE_NAME = "qid_idle";
-exports.DEFAULT_STATS = [{}];
+exports.expTable = {
+    "1": 83,
+    "2": 174,
+    "3": 276,
+    "4": 388,
+    "5": 512,
+    "6": 650,
+    "7": 801,
+    "8": 969,
+    "9": 1154,
+    "10": 1358,
+    "11": 1584,
+    "12": 1833,
+    "13": 2107,
+    "14": 2411,
+    "15": 2746,
+    "16": 3115,
+    "17": 3523,
+    "18": 3973,
+    "19": 4470,
+    "20": 5018,
+    "21": 5624,
+    "22": 6291,
+    "23": 7028,
+    "24": 7842,
+    "25": 8740,
+    "26": 9730,
+    "27": 10824,
+    "28": 12031,
+    "29": 13363,
+    "30": 14833,
+    "31": 16456,
+    "32": 18247,
+    "33": 20224,
+    "34": 22406,
+    "35": 24815,
+    "36": 27473,
+    "37": 30408,
+    "38": 33648,
+    "39": 37224,
+    "40": 41171,
+};
 //# sourceMappingURL=constants.js.map
