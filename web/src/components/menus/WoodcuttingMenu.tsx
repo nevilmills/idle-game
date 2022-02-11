@@ -9,8 +9,10 @@ import { Trainer } from "../Trainer";
 interface WoodcuttingMenuProps {}
 
 export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
-  //   const [, giveExp] = useGiveExpMutation(); //give this function the skill id and amount of experience.
-  // need to get and store the skillId for woodcutting.
+  /*
+  add a useContext which can be passed to trainers in order to fetch 
+  and display charSkill exp values and levels.
+  */
   const [{ data }] = useGetSkillIdQuery({
     variables: { name: "woodcutting" },
   });
