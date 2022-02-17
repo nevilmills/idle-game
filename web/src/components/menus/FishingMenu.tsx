@@ -18,7 +18,7 @@ export const FishingMenu: React.FC<FishingMenuProps> = ({}) => {
   return (
     <Box w="100%" h="100vh" backgroundColor={V_GREEN}>
       fishing area
-      <Trainer skillId={data?.getSkillId.id} />
+      {/* <Trainer skillId={data?.getSkillId.id} /> */}
     </Box>
   );
 };

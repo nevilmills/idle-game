@@ -1,7 +1,8 @@
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useGiveExpMutation } from "../generated/graphql";
 import { C_GREEN, NYANZA, ROSE } from "../utils/constants";
+import { SkillContext } from "../utils/SkillContext";
 
 interface TrainerProps {
   skillId: number;
@@ -13,18 +14,14 @@ interface TrainerProps {
 }
 
 export const Trainer: React.FC<TrainerProps> = ({ skillId, skillObj }) => {
-  const [isTraining, setIsTraining] = useState(false);
-  const [intervalId, setIntervalId] = useState<NodeJS.Timer | undefined>(
-    undefined
-  );
   const [, giveExp] = useGiveExpMutation();
+  const { isTraining, setIsTraining, id, setId } = useContext(SkillContext);
 
-  // Increment count each second
   const handleClick = () => {
     if (!isTraining) {
       setIsTraining((isTraining) => !isTraining);
 
-      setIntervalId(
+      setId(
         setInterval(async () => {
           const response = await giveExp({ skillId, value: skillObj.exp });
           if (response.data?.giveExp.leveled) {
@@ -35,9 +32,9 @@ export const Trainer: React.FC<TrainerProps> = ({ skillId, skillObj }) => {
         }, skillObj.time)
       );
     } else {
-      setIsTraining(!isTraining);
-      setIntervalId(undefined);
-      clearInterval(intervalId!);
+      setIsTraining((isTraining) => !isTraining);
+      setId(undefined);
+      clearInterval(id!);
     }
   };
 

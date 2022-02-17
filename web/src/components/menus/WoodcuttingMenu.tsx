@@ -1,8 +1,9 @@
 import { Box, Button, Flex } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { UseQueryArgs } from "urql";
 import { Exact, useGetSkillIdQuery } from "../../generated/graphql";
 import { trees, V_GREEN } from "../../utils/constants";
+import { SkillContext } from "../../utils/SkillContext";
 import { queryArgs } from "../../utils/types";
 import { Trainer } from "../Trainer";
 
@@ -17,6 +18,9 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
     variables: { name: "woodcutting" },
   });
 
+  const [isTraining, setIsTraining] = useState<boolean>(false);
+  const [id, setId] = useState<NodeJS.Timer | undefined>(undefined);
+
   if (!data?.getSkillId.id) {
     return <Box>Error fetching data</Box>;
   }
@@ -25,11 +29,13 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
     <Box w="100%" h="100vh" backgroundColor={V_GREEN}>
       woodcutting area
       <Flex>
-        <Trainer skillId={data?.getSkillId.id} skillObj={trees["normal"]} />
-        <Trainer skillId={data?.getSkillId.id} skillObj={trees["oak"]} />
-        <Trainer skillId={data?.getSkillId.id} skillObj={trees["willow"]} />
-        <Trainer skillId={data?.getSkillId.id} skillObj={trees["maple"]} />
-        <Trainer skillId={data?.getSkillId.id} skillObj={trees["yew"]} />
+        <SkillContext.Provider value={{ isTraining, setIsTraining, id, setId }}>
+          <Trainer skillId={data?.getSkillId.id} skillObj={trees["normal"]} />
+          <Trainer skillId={data?.getSkillId.id} skillObj={trees["oak"]} />
+          <Trainer skillId={data?.getSkillId.id} skillObj={trees["willow"]} />
+          <Trainer skillId={data?.getSkillId.id} skillObj={trees["maple"]} />
+          <Trainer skillId={data?.getSkillId.id} skillObj={trees["yew"]} />
+        </SkillContext.Provider>
       </Flex>
     </Box>
   );
