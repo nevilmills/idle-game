@@ -10,6 +10,8 @@ export type ctxParam = {
 export type skillCtxParam = {
   isTraining: boolean;
   setIsTraining: React.Dispatch<React.SetStateAction<boolean>>;
+  id: NodeJS.Timer | undefined;
+  setId: React.Dispatch<React.SetStateAction<NodeJS.Timer | undefined>>;
 };
 
 export type queryArgs = Omit<
