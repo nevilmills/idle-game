@@ -12,6 +12,7 @@ export type skillCtxParam = {
   setIsTraining: React.Dispatch<React.SetStateAction<boolean>>;
   id: NodeJS.Timer | undefined;
   setId: React.Dispatch<React.SetStateAction<NodeJS.Timer | undefined>>;
+  trainerKey: string | undefined;
 };
 
 export type queryArgs = Omit<
