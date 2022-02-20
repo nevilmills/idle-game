@@ -1,7 +1,11 @@
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { UseQueryArgs } from "urql";
-import { Exact, useGetSkillIdQuery } from "../../generated/graphql";
+import {
+  Exact,
+  useGetCharSkillQuery,
+  useGetSkillIdQuery,
+} from "../../generated/graphql";
 import { trees, V_GREEN } from "../../utils/constants";
 import { SkillContext } from "../../utils/SkillContext";
 import { queryArgs } from "../../utils/types";
@@ -10,12 +14,12 @@ import { Trainer } from "../Trainer";
 interface WoodcuttingMenuProps {}
 
 export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
-  /*
-  add a useContext which can be passed to trainers in order to fetch 
-  and display charSkill exp values and levels.
-  */
   const [{ data }] = useGetSkillIdQuery({
     variables: { name: "woodcutting" },
+  });
+
+  const [{ data: charSkillData }] = useGetCharSkillQuery({
+    variables: { skillId: data?.getSkillId.id! },
   });
 
   const [isTraining, setIsTraining] = useState<boolean>(false);
@@ -47,6 +51,9 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
           <Trainer skillId={data?.getSkillId.id} skillObj={trees["yew"]} />
         </SkillContext.Provider>
       </Flex>
+      <Box w="100%" mt={12} textAlign="center">
+        <Text color="white">Curent xp: {charSkillData!.getCharSkill.xp}</Text>
+      </Box>
     </Box>
   );
 };
