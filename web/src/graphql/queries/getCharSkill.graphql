@@ -1,0 +1,6 @@
+query GetCharSkill($skillId: Int!) {
+  getCharSkill(skillId: $skillId) {
+    xp
+    level
+  }
+}

@@ -71,6 +71,7 @@ export type Query = {
   __typename?: 'Query';
   character: Character;
   characters: Array<Character>;
+  getCharSkill: Character_Skill;
   getSkillId: Skill;
   me: User;
   user: User;
@@ -80,6 +81,11 @@ export type Query = {
 
 export type QueryCharacterArgs = {
   id: Scalars['Float'];
+};
+
+
+export type QueryGetCharSkillArgs = {
+  skillId: Scalars['Int'];
 };
 
 
@@ -139,6 +145,13 @@ export type RegisterMutationVariables = Exact<{
 
 
 export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'User', id: number, username: string } };
+
+export type GetCharSkillQueryVariables = Exact<{
+  skillId: Scalars['Int'];
+}>;
+
+
+export type GetCharSkillQuery = { __typename?: 'Query', getCharSkill: { __typename?: 'Character_Skill', xp: number, level: number } };
 
 export type GetSkillIdQueryVariables = Exact<{
   name: Scalars['String'];
@@ -200,6 +213,18 @@ export const RegisterDocument = gql`
 
 export function useRegisterMutation() {
   return Urql.useMutation<RegisterMutation, RegisterMutationVariables>(RegisterDocument);
+};
+export const GetCharSkillDocument = gql`
+    query GetCharSkill($skillId: Int!) {
+  getCharSkill(skillId: $skillId) {
+    xp
+    level
+  }
+}
+    `;
+
+export function useGetCharSkillQuery(options: Omit<Urql.UseQueryArgs<GetCharSkillQueryVariables>, 'query'> = {}) {
+  return Urql.useQuery<GetCharSkillQuery>({ query: GetCharSkillDocument, ...options });
 };
 export const GetSkillIdDocument = gql`
     query GetSkillId($name: String!) {
