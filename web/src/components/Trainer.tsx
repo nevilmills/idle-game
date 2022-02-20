@@ -21,39 +21,30 @@ export const Trainer: React.FC<TrainerProps> = ({ skillId, skillObj }) => {
   const handleClick = () => {
     if (!isTraining) {
       setIsTraining((isTraining) => !isTraining);
-
-      setId(
-        setInterval(async () => {
-          const response = await giveExp({ skillId, value: skillObj.exp });
-          if (response.data?.giveExp.leveled) {
-            console.log("leveled");
-          } else {
-            console.log("exp given!");
-          }
-        }, skillObj.time)
-      );
+      setId(setInterval(trainingUpdate, skillObj.time));
       setTrainerKey(skillObj.name);
     } else {
-      // a trainer is activated
       if (trainerKey == skillObj.name) {
+        // if this trainer is on, turn it off
         setIsTraining((isTraining) => !isTraining);
         clearInterval(id!);
         setId(undefined);
         setTrainerKey(undefined);
       } else {
+        // otherwise turn other trainer off, and turn this trainer
         clearInterval(id!);
-        setId(
-          setInterval(async () => {
-            const response = await giveExp({ skillId, value: skillObj.exp });
-            if (response.data?.giveExp.leveled) {
-              console.log("leveled");
-            } else {
-              console.log("exp given!");
-            }
-          }, skillObj.time)
-        );
+        setId(setInterval(trainingUpdate, skillObj.time));
         setTrainerKey(skillObj.name);
       }
+    }
+  };
+
+  const trainingUpdate = async () => {
+    const response = await giveExp({ skillId, value: skillObj.exp });
+    if (response.data?.giveExp.leveled) {
+      console.log("leveled");
+    } else {
+      console.log("exp given!");
     }
   };
 
