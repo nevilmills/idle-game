@@ -6,6 +6,7 @@ import {
   Int,
   Mutation,
   ObjectType,
+  Query,
   Resolver,
 } from "type-graphql";
 import { Character_Skill } from "../entities/Character_Skill";
@@ -49,5 +50,21 @@ export class CharacterSkillResolver {
     await charSkill.save();
 
     return { charSkill, leveled: false };
+  }
+
+  @Query(() => Character_Skill)
+  async getCharSkill(
+    @Arg("skillId", () => Int) skillId: number,
+    @Ctx() { req }: MyContext
+  ) {
+    const charSkill = await Character_Skill.findOne({
+      where: { characterId: req.session.charId, skillId },
+    });
+
+    if (!charSkill) {
+      throw Error("character_skill not found. check if you are logged in.");
+    }
+
+    return charSkill;
   }
 }

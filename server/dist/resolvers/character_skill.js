@@ -46,6 +46,15 @@ let CharacterSkillResolver = class CharacterSkillResolver {
         await charSkill.save();
         return { charSkill, leveled: false };
     }
+    async getCharSkill(skillId, { req }) {
+        const charSkill = await Character_Skill_1.Character_Skill.findOne({
+            where: { characterId: req.session.charId, skillId },
+        });
+        if (!charSkill) {
+            throw Error("character_skill not found. check if you are logged in.");
+        }
+        return charSkill;
+    }
 };
 __decorate([
     (0, type_graphql_1.Mutation)(() => GiveExpResponse),
@@ -56,6 +65,14 @@ __decorate([
     __metadata("design:paramtypes", [Number, Number, Object]),
     __metadata("design:returntype", Promise)
 ], CharacterSkillResolver.prototype, "giveExp", null);
+__decorate([
+    (0, type_graphql_1.Query)(() => Character_Skill_1.Character_Skill),
+    __param(0, (0, type_graphql_1.Arg)("skillId", () => type_graphql_1.Int)),
+    __param(1, (0, type_graphql_1.Ctx)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:returntype", Promise)
+], CharacterSkillResolver.prototype, "getCharSkill", null);
 CharacterSkillResolver = __decorate([
     (0, type_graphql_1.Resolver)(Character_Skill_1.Character_Skill)
 ], CharacterSkillResolver);
