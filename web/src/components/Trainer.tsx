@@ -16,6 +16,7 @@ interface TrainerProps {
 export const Trainer: React.FC<TrainerProps> = ({ skillId, skillObj }) => {
   const [, giveExp] = useGiveExpMutation();
   const { isTraining, setIsTraining, id, setId } = useContext(SkillContext);
+  const { trainerKey, setTrainerKey } = useContext(SkillContext);
 
   const handleClick = () => {
     if (!isTraining) {
@@ -31,10 +32,28 @@ export const Trainer: React.FC<TrainerProps> = ({ skillId, skillObj }) => {
           }
         }, skillObj.time)
       );
+      setTrainerKey(skillObj.name);
     } else {
-      setIsTraining((isTraining) => !isTraining);
-      setId(undefined);
-      clearInterval(id!);
+      // a trainer is activated
+      if (trainerKey == skillObj.name) {
+        setIsTraining((isTraining) => !isTraining);
+        clearInterval(id!);
+        setId(undefined);
+        setTrainerKey(undefined);
+      } else {
+        clearInterval(id!);
+        setId(
+          setInterval(async () => {
+            const response = await giveExp({ skillId, value: skillObj.exp });
+            if (response.data?.giveExp.leveled) {
+              console.log("leveled");
+            } else {
+              console.log("exp given!");
+            }
+          }, skillObj.time)
+        );
+        setTrainerKey(skillObj.name);
+      }
     }
   };
 
