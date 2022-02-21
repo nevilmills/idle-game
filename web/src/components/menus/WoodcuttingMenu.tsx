@@ -10,6 +10,7 @@ import { trees, V_GREEN } from "../../utils/constants";
 import { SkillContext } from "../../utils/SkillContext";
 import { queryArgs } from "../../utils/types";
 import { Trainer } from "../Trainer";
+import ProgressBar from "progressbar.js";
 
 interface WoodcuttingMenuProps {}
 
@@ -21,6 +22,16 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
   const [{ data: charSkillData }] = useGetCharSkillQuery({
     variables: { skillId: data?.getSkillId.id! },
   });
+
+  const myFunc = () => {
+    var line = new ProgressBar.Line("#progressbar", {
+      color: "#FCB03C",
+      duration: 3000,
+      easing: "easeInOut",
+    });
+
+    line.animate(1);
+  };
 
   const [isTraining, setIsTraining] = useState<boolean>(false);
   const [id, setId] = useState<NodeJS.Timer | undefined>(undefined);
@@ -52,8 +63,10 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
         </SkillContext.Provider>
       </Flex>
       <Box w="100%" mt={12} textAlign="center">
-        <Text color="white">Curent xp: {charSkillData!.getCharSkill.xp}</Text>
+        {/* <Text color="white">Curent xp: {charSkillData!.getCharSkill.xp}</Text> */}
       </Box>
+      <Button onClick={myFunc}>Click!</Button>
+      <Box id="progressbar" />
     </Box>
   );
 };
