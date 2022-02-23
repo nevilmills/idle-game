@@ -23,16 +23,6 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
     variables: { skillId: data?.getSkillId.id! },
   });
 
-  const myFunc = () => {
-    var line = new ProgressBar.Line("#progressbar", {
-      color: "#FCB03C",
-      duration: 3000,
-      easing: "easeInOut",
-    });
-
-    line.animate(1);
-  };
-
   const [isTraining, setIsTraining] = useState<boolean>(false);
   const [id, setId] = useState<NodeJS.Timer | undefined>(undefined);
   const [trainerKey, setTrainerKey] = useState<string | undefined>(undefined);
@@ -65,7 +55,7 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
       <Box w="100%" mt={12} textAlign="center">
         {/* <Text color="white">Curent xp: {charSkillData!.getCharSkill.xp}</Text> */}
       </Box>
-      <Button onClick={myFunc}>Click!</Button>
+      {/* <Button onClick={myFunc}>Click!</Button> */}
       <Box id="progressbar" />
     </Box>
   );
