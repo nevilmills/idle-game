@@ -27,7 +27,7 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
         alignItems="center"
       >
         <Box p="2">
-          <Heading size="md">Random pog idle game</Heading>
+          <Heading size="md">Random idle game</Heading>
         </Box>
         <Spacer />
         <Box
@@ -50,7 +50,7 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
         alignItems="center"
       >
         <Box p="2">
-          <Heading size="md">Random pog idle game</Heading>
+          <Heading size="md">Random idle game</Heading>
         </Box>
         <Spacer />
         <Box
