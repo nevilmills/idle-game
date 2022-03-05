@@ -36,7 +36,7 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
           mr={8}
           alignItems="center"
         >
-          <Link href="/login">login</Link>
+          <Link href="/login">Login</Link>
         </Box>
       </Box>
     );
@@ -60,6 +60,7 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
           alignItems="center"
         >
           <Flex>{data?.me.username}</Flex>
+          <Box h="15px" w="2px" bgColor="black" ml={2} />
           <Button
             size="sm"
             ml={2}
@@ -67,7 +68,7 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
             variant="link"
             color="black"
           >
-            logout
+            Logout
           </Button>
         </Box>
       </Box>
