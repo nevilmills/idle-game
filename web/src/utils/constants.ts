@@ -6,30 +6,35 @@ export const V_GREEN = "#2F9C95";
 export const ROSE = "#664147";
 
 // woodcutting experience
-export const trees = {
-  normal: {
+export const trees = [
+  {
     name: "Normal Tree",
     exp: 25,
     time: 1750,
+    levelReq: 1,
   },
-  oak: {
+  {
     name: "Oak Tree",
     exp: 37.5,
     time: 2250,
+    levelReq: 15,
   },
-  willow: {
+  {
     name: "Willow Tree",
     exp: 67.5,
     time: 2750,
+    levelReq: 30,
   },
-  maple: {
+  {
     name: "Maple Tree",
     exp: 100,
     time: 3000,
+    levelReq: 45,
   },
-  yew: {
+  {
     name: "Yew Tree",
     exp: 175,
     time: 4500,
+    levelReq: 60,
   },
-};
+];

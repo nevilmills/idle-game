@@ -27,7 +27,7 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
   const [id, setId] = useState<NodeJS.Timer | undefined>(undefined);
   const [trainerKey, setTrainerKey] = useState<string | undefined>(undefined);
 
-  if (!data?.getSkillId.id) {
+  if (!data?.getSkillId.id || !charSkillData) {
     return <Box>Error fetching data</Box>;
   }
 
@@ -45,11 +45,13 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
             setTrainerKey,
           }}
         >
-          <Trainer skillId={data?.getSkillId.id} skillObj={trees["normal"]} />
-          <Trainer skillId={data?.getSkillId.id} skillObj={trees["oak"]} />
-          <Trainer skillId={data?.getSkillId.id} skillObj={trees["willow"]} />
-          <Trainer skillId={data?.getSkillId.id} skillObj={trees["maple"]} />
-          <Trainer skillId={data?.getSkillId.id} skillObj={trees["yew"]} />
+          {trees
+            .filter(
+              (tree) => tree.levelReq <= charSkillData?.getCharSkill.level
+            )
+            .map((tree) => (
+              <Trainer skillId={data?.getSkillId.id} skillObj={tree} />
+            ))}
         </SkillContext.Provider>
       </Flex>
       <Box w="100%" mt={12} textAlign="center">
