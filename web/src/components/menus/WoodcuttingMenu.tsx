@@ -7,7 +7,7 @@ import {
   useGetSkillIdQuery,
 } from "../../generated/graphql";
 import { trees, V_GREEN } from "../../utils/constants";
-import { SkillContext } from "../../utils/SkillContext";
+import { SkillContext } from "../../utils/contexts/SkillContext";
 import { queryArgs } from "../../utils/types";
 import { Trainer } from "../Trainer";
 import ProgressBar from "progressbar.js";
@@ -53,7 +53,9 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
         </SkillContext.Provider>
       </Flex>
       <Box w="100%" mt={12} textAlign="center">
-        {/* <Text color="white">Curent xp: {charSkillData!.getCharSkill.xp}</Text> */}
+        {charSkillData?.getCharSkill.xp ? (
+          <Text color="white">Curent xp: {charSkillData.getCharSkill.xp}</Text>
+        ) : null}
       </Box>
       {/* <Button onClick={myFunc}>Click!</Button> */}
       <Box id="progressbar" />

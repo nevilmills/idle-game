@@ -3,7 +3,7 @@ import ProgressBar from "progressbar.js";
 import React, { useContext, useRef, useState } from "react";
 import { useGiveExpMutation } from "../generated/graphql";
 import { C_GREEN, NYANZA, ROSE } from "../utils/constants";
-import { SkillContext } from "../utils/SkillContext";
+import { SkillContext } from "../utils/contexts/SkillContext";
 
 interface TrainerProps {
   skillId: number;
@@ -18,7 +18,7 @@ export const Trainer: React.FC<TrainerProps> = ({ skillId, skillObj }) => {
   const [, giveExp] = useGiveExpMutation();
   const { isTraining, setIsTraining, id, setId } = useContext(SkillContext);
   const { trainerKey, setTrainerKey } = useContext(SkillContext);
-  const progressBarId = `progressbar-${skillObj.exp}`;
+  const progressBarId = `progressbar-${skillObj.name}`;
   const progressBarRef = useRef();
 
   const handleClick = () => {

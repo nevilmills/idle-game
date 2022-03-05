@@ -12,6 +12,8 @@
     "@chakra-ui/react": "^1.7.3",
     "@emotion/react": "11",
     "@emotion/styled": "11",
+    "@fontsource/merriweather": "^4.5.5",
+    "@fontsource/montserrat": "^4.5.5",
     "@graphql-codegen/typescript-urql": "^3.4.2",
     "formik": "^2.2.9",
     "framer-motion": "5",

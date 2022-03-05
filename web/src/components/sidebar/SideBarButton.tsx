@@ -1,6 +1,6 @@
 import { Box, Text } from "@chakra-ui/react";
 import React, { useContext } from "react";
-import { MenuContext } from "../../utils/MenuContext";
+import { MenuContext } from "../../utils/contexts/MenuContext";
 import { GSA } from "../../utils/constants";
 import { ctxParam } from "../../utils/types";
 import { menus } from "../../utils/menus";
