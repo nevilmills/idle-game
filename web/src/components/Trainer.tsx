@@ -2,7 +2,13 @@ import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import ProgressBar from "progressbar.js";
 import React, { useContext, useRef, useState } from "react";
 import { useGiveExpMutation } from "../generated/graphql";
-import { C_GREEN, LAVENDER, B_CORAL, GSA, GAINSBORO } from "../utils/constants";
+import {
+  C_GREEN,
+  LAVENDER,
+  B_CORAL,
+  SHAMROCK,
+  GAINSBORO,
+} from "../utils/constants";
 import { SkillContext } from "../utils/contexts/SkillContext";
 
 interface TrainerProps {
@@ -77,7 +83,7 @@ export const Trainer: React.FC<TrainerProps> = ({ skillId, skillObj }) => {
       boxShadow={"1px 2px"}
       overflow="hidden"
     >
-      <Box backgroundColor={GSA} height={2} width="100%" />
+      <Box backgroundColor={SHAMROCK} height={2} width="100%" />
       <Flex
         w="100%"
         h="100%"

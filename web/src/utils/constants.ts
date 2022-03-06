@@ -1,9 +1,10 @@
 // color palette
 export const LAVENDER = "#F1E4E8";
-export const GSA = "#B97375";
+export const SHAMROCK = "#4C9F70";
 export const C_GREEN = "#CEB1BE";
 export const GAINSBORO = "#E2DCDE";
 export const B_CORAL = "#59656F";
+export const CELESTE = "#9CFFFA"; //fishing color
 // export const GSA = "#A3F7B5";
 
 // woodcutting experience

@@ -1,7 +1,7 @@
 import { Box, Text } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { MenuContext } from "../../utils/contexts/MenuContext";
-import { GSA } from "../../utils/constants";
+import { SHAMROCK } from "../../utils/constants";
 import { ctxParam } from "../../utils/types";
 import { menus } from "../../utils/menus";
 
@@ -19,7 +19,7 @@ export const SideBarButton: React.FC<SideBarButtonProps> = ({ linkedMenu }) => {
       w="100%"
       textAlign={"center"}
       mb={2}
-      _hover={{ border: `1px solid ${GSA}` }}
+      _hover={{ border: `1px solid ${SHAMROCK}` }}
     >
       <Text casing="capitalize" color={"white"}>
         {linkedMenu}
