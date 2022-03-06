@@ -1,9 +1,10 @@
 // color palette
-export const NYANZA = "#E5F9E0";
-export const GSA = "#A3F7B5";
-export const C_GREEN = "#40C9A2";
-export const V_GREEN = "#2F9C95";
-export const ROSE = "#664147";
+export const LAVENDER = "#F1E4E8";
+export const GSA = "#B97375";
+export const C_GREEN = "#CEB1BE";
+export const GAINSBORO = "#E2DCDE";
+export const B_CORAL = "#59656F";
+// export const GSA = "#A3F7B5";
 
 // woodcutting experience
 export const trees = [

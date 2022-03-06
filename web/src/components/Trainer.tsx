@@ -2,7 +2,7 @@ import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import ProgressBar from "progressbar.js";
 import React, { useContext, useRef, useState } from "react";
 import { useGiveExpMutation } from "../generated/graphql";
-import { C_GREEN, NYANZA, ROSE } from "../utils/constants";
+import { C_GREEN, LAVENDER, B_CORAL, GSA, GAINSBORO } from "../utils/constants";
 import { SkillContext } from "../utils/contexts/SkillContext";
 
 interface TrainerProps {
@@ -67,20 +67,32 @@ export const Trainer: React.FC<TrainerProps> = ({ skillId, skillObj }) => {
   };
 
   return (
-    <Box w="250px" h="100px" m={4} borderRadius="15px" overflow="hidden">
-      <Box backgroundColor={NYANZA} height={2} width="100%" />
+    <Box
+      w="250px"
+      h="100px"
+      m={4}
+      borderRadius="15px"
+      borderWidth={2}
+      borderColor={B_CORAL}
+      boxShadow={"1px 2px"}
+      overflow="hidden"
+    >
+      <Box backgroundColor={GSA} height={2} width="100%" />
       <Flex
         w="100%"
         h="100%"
-        backgroundColor={ROSE}
+        backgroundColor={GAINSBORO}
         flexDirection={"column"}
         alignItems={"center"}
       >
-        <Text casing="capitalize" color={"white"}>
-          {skillObj.name}
-        </Text>
-        <Button size={"sm"} onClick={handleClick}>
-          Start
+        <Text casing="capitalize">{skillObj.name}</Text>
+        <Button
+          size={"sm"}
+          textColor={"white"}
+          bgColor={B_CORAL}
+          onClick={handleClick}
+        >
+          Cut
         </Button>
       </Flex>
       {/* <Box id={progressBarId} ref={progressBarRef}></Box> */}

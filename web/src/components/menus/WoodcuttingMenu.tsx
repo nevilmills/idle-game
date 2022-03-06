@@ -6,7 +6,7 @@ import {
   useGetCharSkillQuery,
   useGetSkillIdQuery,
 } from "../../generated/graphql";
-import { trees, V_GREEN } from "../../utils/constants";
+import { trees, GAINSBORO } from "../../utils/constants";
 import { SkillContext } from "../../utils/contexts/SkillContext";
 import { queryArgs } from "../../utils/types";
 import { Trainer } from "../Trainer";
@@ -32,7 +32,7 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
   }
 
   return (
-    <Box w="100%" h="100vh" backgroundColor={V_GREEN}>
+    <Box w="100%" h="100vh" backgroundColor={GAINSBORO}>
       woodcutting area
       <Flex>
         <SkillContext.Provider
@@ -56,7 +56,7 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
       </Flex>
       <Box w="100%" mt={12} textAlign="center">
         {charSkillData?.getCharSkill.xp ? (
-          <Text color="white">Curent xp: {charSkillData.getCharSkill.xp}</Text>
+          <Text>Curent xp: {charSkillData.getCharSkill.xp}</Text>
         ) : null}
       </Box>
       {/* <Button onClick={myFunc}>Click!</Button> */}
