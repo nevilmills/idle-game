@@ -33,7 +33,6 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
 
   return (
     <Box w="100%" h="100vh" backgroundColor={GAINSBORO}>
-      woodcutting area
       <Flex>
         <SkillContext.Provider
           value={{

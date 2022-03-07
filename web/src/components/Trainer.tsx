@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import ProgressBar from "progressbar.js";
 import React, { useContext, useRef, useState } from "react";
 import { useGiveExpMutation } from "../generated/graphql";
@@ -74,8 +74,8 @@ export const Trainer: React.FC<TrainerProps> = ({ skillId, skillObj }) => {
 
   return (
     <Box
-      w="250px"
-      h="100px"
+      w="375px"
+      h="150px"
       m={4}
       borderRadius="15px"
       borderWidth={2}
@@ -91,12 +91,16 @@ export const Trainer: React.FC<TrainerProps> = ({ skillId, skillObj }) => {
         flexDirection={"column"}
         alignItems={"center"}
       >
-        <Text casing="capitalize">{skillObj.name}</Text>
+        <Text casing="capitalize" mt={2}>
+          {skillObj.name}
+        </Text>
+        <Image src={"/images/tree.png"} boxSize="50px" />
         <Button
           size={"sm"}
           textColor={"white"}
           bgColor={B_CORAL}
           onClick={handleClick}
+          mt={2}
         >
           Cut
         </Button>
