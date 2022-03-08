@@ -11,6 +11,7 @@ import { SkillContext } from "../../utils/contexts/SkillContext";
 import { queryArgs } from "../../utils/types";
 import { Trainer } from "../Trainer";
 import ProgressBar from "progressbar.js";
+import { v4 as uuidv4 } from "uuid";
 
 interface WoodcuttingMenuProps {}
 
@@ -49,7 +50,11 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
               (tree) => tree.levelReq <= charSkillData?.getCharSkill.level
             )
             .map((tree) => (
-              <Trainer skillId={data?.getSkillId.id} skillObj={tree} />
+              <Trainer
+                key={uuidv4()}
+                skillId={data?.getSkillId.id}
+                skillObj={tree}
+              />
             ))}
         </SkillContext.Provider>
       </Flex>
@@ -59,7 +64,7 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
         ) : null}
       </Box>
       {/* <Button onClick={myFunc}>Click!</Button> */}
-      <Box id="progressbar" />
+      {/* <Box id="progressbar" /> */}
     </Box>
   );
 };
