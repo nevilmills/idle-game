@@ -8,7 +8,7 @@ import {
 } from "../../generated/graphql";
 import { trees, GAINSBORO, B_CORAL } from "../../utils/constants";
 import { SkillContext } from "../../utils/contexts/SkillContext";
-import { queryArgs } from "../../utils/types";
+import { CharSkillData, queryArgs } from "../../utils/types";
 import { Trainer } from "../Trainer";
 import { v4 as uuidv4 } from "uuid";
 import { ProgressBar } from "../ProgressBar";
@@ -45,7 +45,7 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
             setTrainerKey,
           }}
         >
-          <ProgressBar />
+          <ProgressBar skillData={charSkillData.getCharSkill} />
           <Flex>
             {trees
               .filter(
@@ -60,11 +60,6 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
               ))}
           </Flex>
         </SkillContext.Provider>
-      </Box>
-      <Box w="100%" mt={12} textAlign="center">
-        {charSkillData?.getCharSkill.xp ? (
-          <Text>Curent xp: {charSkillData.getCharSkill.xp}</Text>
-        ) : null}
       </Box>
     </Box>
   );
