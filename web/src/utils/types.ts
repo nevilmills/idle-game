@@ -20,3 +20,9 @@ export type queryArgs = Omit<
   UseQueryArgs<Exact<{ name: string }>, any>,
   "query"
 >;
+
+export type CharSkillData = {
+  __typename?: "Character_Skill" | undefined;
+  xp: number;
+  level: number;
+};
