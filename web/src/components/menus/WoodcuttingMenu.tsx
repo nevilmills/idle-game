@@ -6,12 +6,12 @@ import {
   useGetCharSkillQuery,
   useGetSkillIdQuery,
 } from "../../generated/graphql";
-import { trees, GAINSBORO } from "../../utils/constants";
+import { trees, GAINSBORO, B_CORAL } from "../../utils/constants";
 import { SkillContext } from "../../utils/contexts/SkillContext";
 import { queryArgs } from "../../utils/types";
 import { Trainer } from "../Trainer";
-import ProgressBar from "progressbar.js";
 import { v4 as uuidv4 } from "uuid";
+import { ProgressBar } from "../ProgressBar";
 
 interface WoodcuttingMenuProps {}
 
@@ -34,7 +34,7 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
 
   return (
     <Box w="100%" h="100vh" backgroundColor={GAINSBORO}>
-      <Flex>
+      <Box m={4}>
         <SkillContext.Provider
           value={{
             isTraining,
@@ -45,26 +45,27 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
             setTrainerKey,
           }}
         >
-          {trees
-            .filter(
-              (tree) => tree.levelReq <= charSkillData?.getCharSkill.level
-            )
-            .map((tree) => (
-              <Trainer
-                key={uuidv4()}
-                skillId={data?.getSkillId.id}
-                skillObj={tree}
-              />
-            ))}
+          <ProgressBar />
+          <Flex>
+            {trees
+              .filter(
+                (tree) => tree.levelReq <= charSkillData?.getCharSkill.level
+              )
+              .map((tree) => (
+                <Trainer
+                  key={uuidv4()}
+                  skillId={data?.getSkillId.id}
+                  skillObj={tree}
+                />
+              ))}
+          </Flex>
         </SkillContext.Provider>
-      </Flex>
+      </Box>
       <Box w="100%" mt={12} textAlign="center">
         {charSkillData?.getCharSkill.xp ? (
           <Text>Curent xp: {charSkillData.getCharSkill.xp}</Text>
         ) : null}
       </Box>
-      {/* <Button onClick={myFunc}>Click!</Button> */}
-      {/* <Box id="progressbar" /> */}
     </Box>
   );
 };

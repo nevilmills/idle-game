@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import ProgressBar from "progressbar.js";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useGiveExpMutation } from "../generated/graphql";
 import {
   C_GREEN,
@@ -14,6 +14,8 @@ import { SkillContext } from "../utils/contexts/SkillContext";
 interface TrainerProps {
   skillId: number;
   skillObj: {
+    id: number;
+    levelReq: number;
     name: string;
     exp: number;
     time: number;
@@ -24,8 +26,15 @@ export const Trainer: React.FC<TrainerProps> = ({ skillId, skillObj }) => {
   const [, giveExp] = useGiveExpMutation();
   const { isTraining, setIsTraining, id, setId } = useContext(SkillContext);
   const { trainerKey, setTrainerKey } = useContext(SkillContext);
-  const progressBarId = `progressbar-${skillObj.name}`;
+  const progressBarId = `#progressbar${skillObj.id}`;
   const progressBarRef = useRef();
+  // useEffect(() => {
+  //   line = new ProgressBar.Line(progressBarRef.current, {
+  //     color: "#93FF96",
+  //     duration: skillObj.time,
+  //     easing: "easeOut",
+  //   });
+  // }, []);
 
   const handleClick = () => {
     if (!isTraining) {
@@ -60,14 +69,14 @@ export const Trainer: React.FC<TrainerProps> = ({ skillId, skillObj }) => {
   };
 
   const animateProgress = () => {
-    const line = new ProgressBar.Line(progressBarId, {
+    const line = new ProgressBar.Line(progressBarRef.current as any, {
       color: "#93FF96",
       duration: skillObj.time,
       easing: "easeOut",
     });
-
     line.animate(1, {}, () => {
       line.destroy();
+      // console.log("done");
       return;
     });
   };
@@ -76,7 +85,7 @@ export const Trainer: React.FC<TrainerProps> = ({ skillId, skillObj }) => {
     <Box
       w="375px"
       h="150px"
-      m={4}
+      mr={4}
       borderRadius="15px"
       borderWidth={2}
       borderColor={B_CORAL}
@@ -105,7 +114,6 @@ export const Trainer: React.FC<TrainerProps> = ({ skillId, skillObj }) => {
           Cut
         </Button>
       </Flex>
-      {/* <Box id={progressBarId} ref={progressBarRef}></Box> */}
     </Box>
   );
 };
