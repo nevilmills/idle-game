@@ -47,21 +47,24 @@ export const Trainer: React.FC<TrainerProps> = ({
       } else {
         // otherwise turn other trainer off, and turn this trainer on
         clearInterval(id!);
+        animateProgress();
         setId(setInterval(trainingUpdate, skillObj.time));
         setTrainerKey(skillObj.name);
       }
     }
   };
 
-  const trainingUpdate = async () => {
+  const trainingUpdate = () => {
+    animateProgress();
+  };
+
+  const giveUserExp = async () => {
     const response = await giveExp({ skillId, value: skillObj.exp });
     if (response.data?.giveExp.leveled) {
       console.log("leveled");
     } else {
       console.log("exp given!");
     }
-
-    animateProgress();
   };
 
   const animateProgress = () => {
@@ -71,7 +74,8 @@ export const Trainer: React.FC<TrainerProps> = ({
       easing: "easeOut",
       strokeWidth: 2,
     });
-    line.animate(1, {}, () => {
+    line.animate(1, {}, async () => {
+      await giveUserExp();
       line.destroy();
       // console.log("done");
       return;
@@ -104,7 +108,7 @@ export const Trainer: React.FC<TrainerProps> = ({
         <Button
           size={"sm"}
           textColor={"white"}
-          bgColor={B_CORAL}
+          bgColor={trainerKey === skillObj.name ? "green" : B_CORAL}
           onClick={handleClick}
           mt={2}
         >
