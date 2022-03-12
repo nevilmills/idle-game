@@ -56,6 +56,7 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
                   key={uuidv4()}
                   skillId={data?.getSkillId.id}
                   skillObj={tree}
+                  progressBarId={""}
                 />
               ))}
           </Flex>

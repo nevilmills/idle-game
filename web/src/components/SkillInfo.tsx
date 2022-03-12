@@ -1,21 +1,15 @@
 import { Box, Button, Flex, Spacer, Text } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { B_CORAL, SHAMROCK } from "../utils/constants";
 import { CharSkillData } from "../utils/types";
 import ProgressBar from "progressbar.js";
+import { SkillContext } from "../utils/contexts/SkillContext";
 
-export const SkillInfo: React.FC<{ skillData: CharSkillData }> = ({
-  skillData,
-}) => {
-  // let bar = null;
-
-  // useEffect(() => {
-  //   bar = new ProgressBar.Line("#pb", {
-  //     color: "#93FF96",
-  //     duration: 1000,
-  //     easing: "easeOut",
-  //   });
-  // }, []);
+export const SkillInfo: React.FC<{
+  skillData: CharSkillData;
+}> = ({ skillData }) => {
+  const progressBarId = "pb";
+  const { trainerKey: currentlyCutting } = useContext(SkillContext);
 
   const animateProgress = () => {
     const line = new ProgressBar.Line("#pb", {
@@ -46,12 +40,19 @@ export const SkillInfo: React.FC<{ skillData: CharSkillData }> = ({
         <Text>SKILL LEVEL: {skillData.level}</Text>
         <Text>SKILL XP: {skillData.xp}</Text>
       </Flex>
-      <Flex flexDirection={"column"} alignItems={"center"}>
-        <Box id={"pb"} maxW={"1000px"}></Box>
-        <Button w={"100px"} onClick={animateProgress}>
-          Test
-        </Button>
-      </Flex>
+      <Box>
+        <Box
+          mt={8}
+          mx={"auto"}
+          id={progressBarId}
+          maxW={"1000px"}
+          h={"250px"}
+        ></Box>
+      </Box>
+
+      <Box mb={2} mx={"auto"}>
+        <Text>Currently cutting: {currentlyCutting}</Text>
+      </Box>
     </Box>
   );
 };

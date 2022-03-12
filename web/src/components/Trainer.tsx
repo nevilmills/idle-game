@@ -20,21 +20,17 @@ interface TrainerProps {
     exp: number;
     time: number;
   };
+  progressBarId: string;
 }
 
-export const Trainer: React.FC<TrainerProps> = ({ skillId, skillObj }) => {
+export const Trainer: React.FC<TrainerProps> = ({
+  skillId,
+  skillObj,
+  progressBarId,
+}) => {
   const [, giveExp] = useGiveExpMutation();
   const { isTraining, setIsTraining, id, setId } = useContext(SkillContext);
   const { trainerKey, setTrainerKey } = useContext(SkillContext);
-  const progressBarId = `#progressbar${skillObj.id}`;
-  const progressBarRef = useRef();
-  // useEffect(() => {
-  //   line = new ProgressBar.Line(progressBarRef.current, {
-  //     color: "#93FF96",
-  //     duration: skillObj.time,
-  //     easing: "easeOut",
-  //   });
-  // }, []);
 
   const handleClick = () => {
     if (!isTraining) {
@@ -69,10 +65,11 @@ export const Trainer: React.FC<TrainerProps> = ({ skillId, skillObj }) => {
   };
 
   const animateProgress = () => {
-    const line = new ProgressBar.Line(progressBarRef.current as any, {
+    const line = new ProgressBar.Line("#pb", {
       color: "#93FF96",
       duration: skillObj.time,
       easing: "easeOut",
+      strokeWidth: 2,
     });
     line.animate(1, {}, () => {
       line.destroy();
