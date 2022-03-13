@@ -45,12 +45,14 @@ export const SkillInfo: React.FC<{
           mt={8}
           mx={"auto"}
           id={progressBarId}
-          maxW={"1000px"}
-          h={"250px"}
+          w={"1000px"}
+          h={"22px"}
+          border={"1px solid black"}
+          mb={4}
         ></Box>
       </Box>
 
-      <Box mb={2} mx={"auto"}>
+      <Box mb={2} textAlign="center">
         <Text>Currently cutting: {currentlyCutting}</Text>
       </Box>
     </Box>
