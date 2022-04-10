@@ -5,9 +5,9 @@ import { GAINSBORO } from "../../utils/constants";
 import { Trainer } from "../Trainer";
 import ProgressBar from "progressbar.js";
 
-interface CharacterAreaProps {}
+interface CharacterMenuProps {}
 
-export const CharacterArea: React.FC<CharacterAreaProps> = ({}) => {
+export const CharacterMenu: React.FC<CharacterMenuProps> = ({}) => {
   const [{ data }] = useMeQuery();
   const message = `Hi ${data?.me.username}, welcome to my game!`;
 

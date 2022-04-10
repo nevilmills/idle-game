@@ -3,8 +3,8 @@ import { UseQueryArgs } from "urql";
 import { Exact } from "../generated/graphql";
 
 export type ctxParam = {
-  area: JSX.Element;
-  setArea: Dispatch<SetStateAction<JSX.Element>>;
+  menu: JSX.Element;
+  setMenu: Dispatch<SetStateAction<JSX.Element>>;
 } | null;
 
 export type skillCtxParam = {
