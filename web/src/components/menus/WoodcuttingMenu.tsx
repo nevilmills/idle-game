@@ -11,7 +11,7 @@ import { SkillContext } from "../../utils/contexts/SkillContext";
 import { CharSkillData, queryArgs } from "../../utils/types";
 import { Trainer } from "../Trainer";
 import { v4 as uuidv4 } from "uuid";
-import { TrainingInfo } from "../SkillInfo";
+import { TrainingInfo } from "../TrainingInfo";
 
 interface WoodcuttingMenuProps {}
 
@@ -45,7 +45,10 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
             setTrainerKey,
           }}
         >
-          <TrainingInfo skillData={charSkillData.getCharSkill} />
+          <TrainingInfo
+            skillData={charSkillData.getCharSkill}
+            currentMenu="woodcutting"
+          />
           <Flex>
             {trees
               .filter(
@@ -57,6 +60,7 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
                   skillId={data?.getSkillId.id}
                   skillObj={tree}
                   progressBarId={""}
+                  currentMenu="woodcutting"
                 />
               ))}
           </Flex>

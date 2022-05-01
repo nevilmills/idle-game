@@ -5,7 +5,16 @@ export const C_GREEN = "#CEB1BE";
 export const GAINSBORO = "#E2DCDE";
 export const B_CORAL = "#59656F";
 export const CELESTE = "#9CFFFA"; //fishing color
+export const ROCK = "#635f53"; // mining color
 // export const GSA = "#A3F7B5";
+
+// Menu colors
+
+export const menuColors = {
+  woodcutting: SHAMROCK,
+  fishing: CELESTE,
+  mining: ROCK,
+};
 
 // woodcutting experience
 export const trees = [

@@ -26,3 +26,5 @@ export type CharSkillData = {
   xp: number;
   level: number;
 };
+
+export type MenuOption = "woodcutting" | "mining" | "fishing";

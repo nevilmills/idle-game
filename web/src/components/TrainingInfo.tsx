@@ -1,15 +1,22 @@
 import { Box, Button, Flex, Spacer, Text } from "@chakra-ui/react";
 import React, { useContext, useEffect } from "react";
-import { B_CORAL, SHAMROCK } from "../utils/constants";
-import { CharSkillData } from "../utils/types";
+import { B_CORAL, menuColors, SHAMROCK } from "../utils/constants";
+import { CharSkillData, MenuOption } from "../utils/types";
 import ProgressBar from "progressbar.js";
 import { SkillContext } from "../utils/contexts/SkillContext";
 
-export const TrainingInfo: React.FC<{
+interface TrainingInfoProps {
   skillData: CharSkillData;
-}> = ({ skillData }) => {
+  currentMenu: MenuOption;
+}
+
+export const TrainingInfo: React.FC<TrainingInfoProps> = ({
+  skillData,
+  currentMenu,
+}) => {
   const progressBarId = "pb";
   const { trainerKey: currentlyCutting } = useContext(SkillContext);
+  const menuColor = menuColors[currentMenu];
 
   const animateProgress = () => {
     const line = new ProgressBar.Line("#pb", {
@@ -35,7 +42,7 @@ export const TrainingInfo: React.FC<{
       boxShadow={"1px 2px"}
       overflow="hidden"
     >
-      <Box backgroundColor={SHAMROCK} height={2} width="100%" />
+      <Box backgroundColor={menuColor} height={2} width="100%" />
       <Flex mt={2} justifyContent={"space-around"}>
         <Text>SKILL LEVEL: {skillData.level}</Text>
         <Text>SKILL XP: {skillData.xp}</Text>

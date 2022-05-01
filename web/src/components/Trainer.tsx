@@ -8,8 +8,10 @@ import {
   B_CORAL,
   SHAMROCK,
   GAINSBORO,
+  menuColors,
 } from "../utils/constants";
 import { SkillContext } from "../utils/contexts/SkillContext";
+import { MenuOption } from "../utils/types";
 
 interface TrainerProps {
   skillId: number;
@@ -21,16 +23,18 @@ interface TrainerProps {
     time: number;
   };
   progressBarId: string;
+  currentMenu: MenuOption;
 }
 
 export const Trainer: React.FC<TrainerProps> = ({
   skillId,
   skillObj,
-  progressBarId,
+  currentMenu,
 }) => {
   const [, giveExp] = useGiveExpMutation();
   const { isTraining, setIsTraining, id, setId } = useContext(SkillContext);
   const { trainerKey, setTrainerKey } = useContext(SkillContext);
+  const menuColor = menuColors[currentMenu];
 
   const handleClick = () => {
     if (!isTraining) {
@@ -93,7 +97,7 @@ export const Trainer: React.FC<TrainerProps> = ({
       boxShadow={"1px 2px"}
       overflow="hidden"
     >
-      <Box backgroundColor={SHAMROCK} height={2} width="100%" />
+      <Box backgroundColor={menuColor} height={2} width="100%" />
       <Flex
         w="100%"
         h="100%"
