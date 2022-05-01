@@ -5,7 +5,7 @@ import { CharSkillData } from "../utils/types";
 import ProgressBar from "progressbar.js";
 import { SkillContext } from "../utils/contexts/SkillContext";
 
-export const SkillInfo: React.FC<{
+export const TrainingInfo: React.FC<{
   skillData: CharSkillData;
 }> = ({ skillData }) => {
   const progressBarId = "pb";
