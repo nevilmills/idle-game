@@ -68,7 +68,7 @@ export const fish = [
     name: "Salmon",
     exp: 37.5,
     time: 2250,
-    levelReq: 15,
+    levelReq: 10,
     id: 2,
   },
   {
