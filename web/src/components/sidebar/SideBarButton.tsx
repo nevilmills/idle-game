@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Button, Text } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { MenuContext } from "../../utils/contexts/MenuContext";
 import { SHAMROCK } from "../../utils/constants";
@@ -19,11 +19,13 @@ export const SideBarButton: React.FC<SideBarButtonProps> = ({ linkedMenu }) => {
       w="100%"
       textAlign={"center"}
       mb={2}
-      _hover={{ border: `1px solid ${SHAMROCK}` }}
+      _hover={{ backgroundColor: "#3f484f" }}
     >
-      <Text casing="capitalize" color={"white"}>
-        {linkedMenu}
-      </Text>
+      <Box as={"button"}>
+        <Text casing="capitalize" color={"white"}>
+          {linkedMenu}
+        </Text>
+      </Box>
     </Box>
   );
 };

@@ -1,4 +1,4 @@
-import { CharacterArea } from "../components/menus/CharacterMenu";
+import { CharacterMenu } from "../components/menus/CharacterMenu";
 import { FishingMenu } from "../components/menus/FishingMenu";
 import { MiningMenu } from "../components/menus/MiningMenu";
 import { WoodcuttingMenu } from "../components/menus/WoodcuttingMenu";
@@ -13,7 +13,7 @@ interface menuSet {
 }
 
 export const menus: menuSet = {
-  home: <CharacterArea />,
+  home: <CharacterMenu />,
   woodcutting: <WoodcuttingMenu />,
   fishing: <FishingMenu />,
   mining: <MiningMenu />,
