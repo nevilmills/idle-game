@@ -35,6 +35,13 @@ export const Trainer: React.FC<TrainerProps> = ({
   const { isTraining, setIsTraining, id, setId } = useContext(SkillContext);
   const { trainerKey, setTrainerKey } = useContext(SkillContext);
   const menuColor = menuColors[currentMenu];
+  const imgName =
+    currentMenu === "woodcutting"
+      ? "tree.png"
+      : currentMenu === "fishing"
+      ? "fish.png"
+      : "pickaxe.png";
+  const imgSrc = `/images/${imgName}`;
 
   const handleClick = () => {
     if (!isTraining) {
@@ -108,7 +115,7 @@ export const Trainer: React.FC<TrainerProps> = ({
         <Text casing="capitalize" mt={2}>
           {skillObj.name}
         </Text>
-        <Image src={"/images/tree.png"} boxSize="50px" />
+        <Image src={imgSrc} boxSize="50px" p={1} />
         <Button
           size={"sm"}
           textColor={"white"}
