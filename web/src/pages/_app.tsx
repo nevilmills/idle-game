@@ -1,5 +1,6 @@
 import "@fontsource/merriweather/400.css";
 import "@fontsource/montserrat/800.css";
+import "@fontsource/poppins";
 
 import "../../styles/globals.css";
 import type { AppProps } from "next/app";
