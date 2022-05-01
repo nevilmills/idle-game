@@ -10,12 +10,12 @@ interface SideBarButtonProps {
 }
 
 export const SideBarButton: React.FC<SideBarButtonProps> = ({ linkedMenu }) => {
-  const { _, setArea } = useContext<any>(MenuContext);
+  const { _, setMenu } = useContext<any>(MenuContext);
   const nextMenu = menus[linkedMenu]; // nextArea = <WoodcuttingArea />
 
   return (
     <Box
-      onClick={() => setArea(nextMenu)}
+      onClick={() => setMenu(nextMenu)}
       w="100%"
       textAlign={"center"}
       mb={2}
