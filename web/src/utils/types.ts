@@ -7,13 +7,9 @@ export type ctxParam = {
   setMenu: Dispatch<SetStateAction<JSX.Element>>;
 } | null;
 
-export type skillCtxParam = {
-  isTraining: boolean;
-  setIsTraining: React.Dispatch<React.SetStateAction<boolean>>;
-  id: NodeJS.Timer | undefined;
-  setId: React.Dispatch<React.SetStateAction<NodeJS.Timer | undefined>>;
-  trainerKey: string | undefined;
-  setTrainerKey: React.Dispatch<React.SetStateAction<string | undefined>>;
+export type SkillCtx = {
+  trainingStatus: TrainingStatus;
+  setTrainingStatus: React.Dispatch<React.SetStateAction<TrainingStatus>>;
 };
 
 export type queryArgs = Omit<
@@ -28,3 +24,9 @@ export type CharSkillData = {
 };
 
 export type MenuOption = "woodcutting" | "mining" | "fishing";
+
+export type TrainingStatus = {
+  isTraining: boolean;
+  trainerName: string | undefined;
+  intervalId: NodeJS.Timer | undefined;
+};

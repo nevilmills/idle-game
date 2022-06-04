@@ -32,8 +32,7 @@ export const Trainer: React.FC<TrainerProps> = ({
   currentMenu,
 }) => {
   const [, giveExp] = useGiveExpMutation();
-  const { isTraining, setIsTraining, id, setId } = useContext(SkillContext);
-  const { trainerKey, setTrainerKey } = useContext(SkillContext);
+  const { trainingStatus, setTrainingStatus } = useContext(SkillContext);
   const menuColor = menuColors[currentMenu];
   const imgName =
     currentMenu === "woodcutting"
@@ -44,23 +43,31 @@ export const Trainer: React.FC<TrainerProps> = ({
   const imgSrc = `/images/${imgName}`;
 
   const handleClick = () => {
-    if (!isTraining) {
-      setIsTraining((isTraining) => !isTraining);
-      setId(setInterval(trainingUpdate, skillObj.time));
-      setTrainerKey(skillObj.name);
+    if (!trainingStatus.isTraining) {
+      setTrainingStatus({
+        isTraining: !trainingStatus.isTraining,
+        trainerName: skillObj.name,
+        intervalId: setInterval(trainingUpdate, skillObj.time),
+      });
     } else {
-      if (trainerKey == skillObj.name) {
+      if (trainingStatus.trainerName == skillObj.name) {
         // if the active trainer is this one, turn it off
-        setIsTraining((isTraining) => !isTraining);
-        clearInterval(id!);
-        setId(undefined);
-        setTrainerKey(undefined);
+        clearInterval(trainingStatus.intervalId!);
+
+        setTrainingStatus({
+          isTraining: !trainingStatus.isTraining,
+          intervalId: undefined,
+          trainerName: undefined,
+        });
       } else {
         // otherwise turn other trainer off, and turn this trainer on
-        clearInterval(id!);
+        clearInterval(trainingStatus.intervalId!);
         animateProgress();
-        setId(setInterval(trainingUpdate, skillObj.time));
-        setTrainerKey(skillObj.name);
+        setTrainingStatus({
+          ...trainingStatus,
+          trainerName: skillObj.name,
+          intervalId: setInterval(trainingUpdate, skillObj.time),
+        });
       }
     }
   };
@@ -119,7 +126,9 @@ export const Trainer: React.FC<TrainerProps> = ({
         <Button
           size={"sm"}
           textColor={"white"}
-          bgColor={trainerKey === skillObj.name ? "green" : B_CORAL}
+          bgColor={
+            trainingStatus.trainerName === skillObj.name ? "green" : B_CORAL
+          }
           onClick={handleClick}
           mt={2}
         >

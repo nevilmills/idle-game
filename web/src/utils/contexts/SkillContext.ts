@@ -1,4 +1,4 @@
 import { createContext } from "react";
-import { skillCtxParam } from "../types";
+import { SkillCtx } from "../types";
 
-export const SkillContext = createContext<skillCtxParam>({} as skillCtxParam);
+export const SkillContext = createContext<SkillCtx>({} as SkillCtx);

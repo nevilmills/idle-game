@@ -8,7 +8,7 @@ import {
 } from "../../generated/graphql";
 import { trees, GAINSBORO, B_CORAL } from "../../utils/constants";
 import { SkillContext } from "../../utils/contexts/SkillContext";
-import { CharSkillData, queryArgs } from "../../utils/types";
+import { TrainingStatus } from "../../utils/types";
 import { Trainer } from "../Trainer";
 import { v4 as uuidv4 } from "uuid";
 import { TrainingInfo } from "../TrainingInfo";
@@ -16,6 +16,12 @@ import { TrainingInfo } from "../TrainingInfo";
 interface WoodcuttingMenuProps {}
 
 export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
+  const [trainingStatus, setTrainingStatus] = useState<TrainingStatus>({
+    isTraining: false,
+    trainerName: undefined,
+    intervalId: undefined,
+  });
+
   const [{ data }] = useGetSkillIdQuery({
     variables: { name: "woodcutting" },
   });
@@ -23,10 +29,6 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
   const [{ data: charSkillData }] = useGetCharSkillQuery({
     variables: { skillId: data?.getSkillId.id! },
   });
-
-  const [isTraining, setIsTraining] = useState<boolean>(false);
-  const [id, setId] = useState<NodeJS.Timer | undefined>(undefined);
-  const [trainerKey, setTrainerKey] = useState<string | undefined>(undefined);
 
   if (!data?.getSkillId.id || !charSkillData) {
     return <Box>Error fetching data</Box>;
@@ -37,12 +39,8 @@ export const WoodcuttingMenu: React.FC<WoodcuttingMenuProps> = ({}) => {
       <Box m={4}>
         <SkillContext.Provider
           value={{
-            isTraining,
-            setIsTraining,
-            id,
-            setId,
-            trainerKey,
-            setTrainerKey,
+            trainingStatus,
+            setTrainingStatus,
           }}
         >
           <TrainingInfo
